@@ -8,6 +8,7 @@ Cuando sea el momento de iniciar con su tarea(ticket), debe de crear una rama ba
 ```
 Tipos de ramas:
 _**feature:** Se utiliza para desarrollar nuevas características para la próxima o una futura versión lejana._
+
 _**bugfix:** Se utiliza cuando es necesario actuar inmediatamente ante un estado no deseado de una versión de producción en vivo o que afecte otras areas de desarrollo._
 
 ### 2. Registro de cambios 🐾
@@ -18,7 +19,7 @@ Necesitamos hacer un seguimiento de todos los cambios en los componentes, para e
 - [PROJ-ZZZ](TICKET_URL) <Descripción del cambio> ->  Y URL del ticket
 ```
 
-ejemplo
+**ejemplo:**
 ```
 [0.1.0](https://github.com/TEAMVALLESOFT/Back_Inventory/pull-requests/1) (2021-03-14)
 **Added**
