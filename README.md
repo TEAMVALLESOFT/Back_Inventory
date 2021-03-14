@@ -26,5 +26,7 @@ ejemplo
 ```
 ### 3. Certifique sus cambio
 Asegurarse de que los cambios funcionan como se espera es un proceso de dos pasos:
+
 _**Pruebas locales:** Cada desarrollador debe probar en sus máquinas los cambios._
+
 _**Pruebas de desarrollo y control de calidad:**_ Cuando el desarrollador está seguro de promover los cambios, debe crear un PR a la main, el PR debe ser aprobado por otros compañeros de equipo y finalmente ser fusionado usando ```--squash.```
