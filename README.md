@@ -29,7 +29,7 @@ Necesitamos hacer un seguimiento de todos los cambios en los componentes, para e
 - [IV-01] Adición del servicio de login. 
 ```
 
-### 3. Certifique sus cambio
+### 3. Certifique sus cambio 👨‍💻
 Asegurarse de que los cambios funcionan como se espera es un proceso de dos pasos:
 
 _**Pruebas locales:** Cada desarrollador debe probar en sus máquinas los cambios._
