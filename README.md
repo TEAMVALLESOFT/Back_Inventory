@@ -1,37 +1,45 @@
 # Back_Inventory
 
-## Proceso de Desarrollo 🚀
-### 1. Creación de una rama 🐙
-Cuando sea el momento de iniciar con su tarea(ticket), debe de crear una rama basada en la main, el nombre de la rama debe de seguir el patron.
+## Development process 🚀
+### 1. Creating a branch 🐙
+When it is time to start a task, you must create a new branch based on the main one, its name must follow the following pattern:
 ```
 <BRANCH_TYPE>/<PROJECT_KEY>-<TICKET_ID>
 ```
-Tipos de ramas:
+Types of branches:
 
-_**feature:** Se utiliza para desarrollar nuevas características para la próxima o una futura versión lejana._
+_**feature:** It is used when new components or functions are developed._
 
-_**bugfix:** Se utiliza cuando es necesario actuar inmediatamente ante un estado no deseado de una versión de producción en vivo o que afecte otras areas de desarrollo._
+_**bugfix:** It is used to correct an unwanted state of a production version or that affects other areas of development._
 
-### 2. Registro de cambios 🐾
-Necesitamos hacer un seguimiento de todos los cambios en los componentes, para ello necesitamos mantener actualizado el archivo ``` CHANGELOG.md ```, con la siguiente estrcutura.
+### 2. Change Log 🐾
+We need to keep track of all the changes in the components, for this we need to keep the ``` CHANGELOG.md ``` file updated, with the following structure.
 
 ```
-## [X.Y.Z](PR_URL) (YYYY-MM-DD) -> Fecha y Pull Request del ultimo cambio
+## [X.Y.Z](PR_URL) (YYYY-MM-DD) -> Date and Pull Request of the last change
 **Added/Fixed**
-- [PROJ-ZZZ](TICKET_URL) <Descripción del cambio> ->  Y URL del ticket
+- [PROJ-ZZZ](TICKET_URL) <Description of the change> ->  And ticket URL
 ```
 
-**ejemplo:**
+**Example:**
 
 ```
 [0.1.0](https://github.com/TEAMVALLESOFT/Back_Inventory/pull-requests/1) (2021-03-14)
 **Added**
-- [IV-01] Adición del servicio de login. 
+- [IV-01] Adding the login service. 
 ```
 
-### 3. Certifique sus cambio 👨‍💻
-Asegurarse de que los cambios funcionan como se espera es un proceso de dos pasos:
+### 3. Certify your changes 🏆
+Ensuring that the changes work as expected is a two-step process:
 
-_**Pruebas locales:** Cada desarrollador debe probar en sus máquinas los cambios._
+_**Local tests:** Each developer must test the changes on their machines._
 
-_**Pruebas de desarrollo y control de calidad:**_ Cuando el desarrollador está seguro de promover los cambios, debe crear un PR a la main, el PR debe ser aprobado por otros compañeros de equipo y finalmente ser fusionado usando ```--squash.```
+_**Development testing and quality control:**_ When the developer is sure to promote the changes, they must create a PR, must be approved by other teammates and finally merged using ```--squash.```
+
+### 4. Who can merge branches? 👩‍💻 👨‍💻
+
+_**BE leader:** Juan David González - [TOYCRESJDGM](https://github.com/TOYCRESJDGM)_
+
+_**FE leader:** Natalia Vargas - [vargas-ins](https://github.com/vargas-ins)_
+
+_**Project manager:** Natalia Rodríguez - [NataliaRodriguez98](https://github.com/NataliaRodriguez98)_ 
