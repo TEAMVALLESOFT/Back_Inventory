@@ -1,11 +1,12 @@
 const mysql = require('mysql');
 
+//configurar la conexión de acuerdo a las credenciales
 const mysqlConnection = mysql.createConnection({
-    host: 'host_name',
-    user : 'name_user',
-    password : 'password',
+    host: 'remotemysql.com',
+    user : 'SicDMSiMjC',
+    password : 'QTnWiJvXZ7',
     Port : 3306,
-    database : 'name_database'
+    database : 'SicDMSiMjC'
 });
 
 mysqlConnection.connect(function(err){
