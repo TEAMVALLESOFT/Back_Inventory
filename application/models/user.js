@@ -1,5 +1,5 @@
 module.exports = (sequelize, type) => {
-    return sequelize.define('user', {
+    const Usuario = sequelize.define('user', {
         user_id: {
             type: type.INTEGER,
             primaryKey: true,
@@ -10,5 +10,11 @@ module.exports = (sequelize, type) => {
         branch: type.STRING,
         phone: type.STRING,
         password: type.STRING(150)
-    })
+    },{
+        tableName: 'USER'
+    });
+    Usuario.associate = function(models) {
+        // Las asociaciones con otros objetos deben ser definidos aquí.
+    };
+    return Usuario;
 }
