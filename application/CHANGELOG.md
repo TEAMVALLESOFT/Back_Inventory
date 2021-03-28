@@ -1,3 +1,9 @@
+## [1.2.0](https://github.com/TEAMVALLESOFT/Back_Inventory/pull/8) (2021-03-28)
+**Added/Modified**
+- Se actualiza el modelo de usuarios
+- [VALLESOFT-95] Se crea el servicio de crear bodegas. 
+
+
 ## [1.1.0](https://github.com/TEAMVALLESOFT/Back_Inventory/pull/6) (2021-03-28)
 **Added**
 - Se actualiza el archivo gitignore
