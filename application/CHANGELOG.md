@@ -1,3 +1,7 @@
+## [1.3.0](https://github.com/TEAMVALLESOFT/Back_Inventory/pull/8) (2021-03-28)
+**Added**
+- [VALLESOFT-96] Se crea el servicio de listar bodegas. 
+
 ## [1.2.0](https://github.com/TEAMVALLESOFT/Back_Inventory/pull/8) (2021-03-28)
 **Added/Modified**
 - Se actualiza el modelo de usuarios
