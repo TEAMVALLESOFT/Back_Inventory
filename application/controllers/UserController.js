@@ -20,7 +20,7 @@ exports.add = async(req,res,next)=>{
         }
     }catch(error){
         res.status(500).send({
-            message: 'Error en el servidor.'
+            message: '¡Error en el servidor!.'
         })
         next(error);
     }
@@ -41,8 +41,7 @@ exports.login = async(req,res,next)=>{
                         id : Usuario.user_id,
                         name: Usuario.user_name,
                         email: Usuario.email
-                    } 
-                    
+                    }             
                 })
 
             }else {           
@@ -59,7 +58,7 @@ exports.login = async(req,res,next)=>{
         }
     }catch(error){
         res.status(500).send({
-            message: 'Error ->' + error
+            message: '¡Error en el servidor!.'
         })
         next(error);
     }
