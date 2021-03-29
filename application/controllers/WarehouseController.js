@@ -20,7 +20,26 @@ exports.create = async(req,res,next)=>{
     } catch (error) {
         res.status(500).send({
             message: 'Error'
-        })
+        });
         next(error);
+    }
+};
+
+
+exports.list = async(req, res, next)=>{
+    try {
+        const bodegas = await Warehouse.findAll();
+        if(bodegas){
+            res.status(200).json(bodegas);
+        }else{
+            res.status(404).send({
+                message: 'No hay bodegas en el sistema.'
+            });
+        }    
+    } catch (error) {
+        res.status(500).send({
+            message: 'Error!!'
+        });
+        next(error);    
     }
 };
