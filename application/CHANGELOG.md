@@ -1,19 +1,19 @@
 ## [1.3.0](https://github.com/TEAMVALLESOFT/Back_Inventory/pull/9) (2021-03-28)
 **Added**
-- [VALLESOFT-96] Se crea el servicio de listar bodegas. 
+- [VALLESOFT-96] Service created to list warehouses . 
 
 ## [1.2.0](https://github.com/TEAMVALLESOFT/Back_Inventory/pull/8) (2021-03-28)
 **Added/Modified**
-- Se actualiza el modelo de usuarios
-- [VALLESOFT-95] Se crea el servicio de crear bodegas. 
+- The user model is updated.
+- [VALLESOFT-95] Service created to create warehouse. 
 
 
 ## [1.1.0](https://github.com/TEAMVALLESOFT/Back_Inventory/pull/6) (2021-03-28)
 **Added**
-- Se actualiza el archivo gitignore
-- [VALLESOFT-84] Se crea el servicio de login de usuarios. 
+- The gitignore file is updated.
+- [VALLESOFT-84] Service created to login users. 
 
 ## [1.0.0](https://github.com/TEAMVALLESOFT/Back_Inventory/pull/4) (2021-03-27)
 **Added**
-- Se actualiza la estructura del proyecto package.json 
-- [VALLESOFT-90] Se crea el servicio de crear usuarios. 
+- The structure of the package.json is updated.
+- [VALLESOFT-90] Service created to create users. 
