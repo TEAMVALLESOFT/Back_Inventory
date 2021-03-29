@@ -19,7 +19,7 @@ exports.create = async(req,res,next)=>{
         }
     } catch (error) {
         res.status(500).send({
-            message: 'Error'
+            message: '¡Error en el servidor!.'
         });
         next(error);
     }
@@ -32,13 +32,13 @@ exports.list = async(req, res, next)=>{
         if(bodegas){
             res.status(200).json(bodegas);
         }else{
-            res.status(404).send({
+            res.status(204).send({
                 message: 'No hay bodegas en el sistema.'
             });
         }    
     } catch (error) {
         res.status(500).send({
-            message: 'Error!!'
+            message: '¡Error en el servidor!.'
         });
         next(error);    
     }
