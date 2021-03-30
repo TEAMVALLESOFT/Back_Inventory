@@ -1,3 +1,7 @@
+## [1.5.0](https://github.com/TEAMVALLESOFT/Back_Inventory/pull/11) (2021-03-29)
+**Added**
+- [VALLESOFT-98] Service created list all types of articles. 
+
 ## [1.4.0](https://github.com/TEAMVALLESOFT/Back_Inventory/pull/10) (2021-03-29)
 **Added**
 - [VALLESOFT-83] Service created to create Article Type. 
@@ -10,7 +14,6 @@
 **Added/Modified**
 - The user model is updated.
 - [VALLESOFT-95] Service created to create warehouse. 
-
 
 ## [1.1.0](https://github.com/TEAMVALLESOFT/Back_Inventory/pull/6) (2021-03-28)
 **Added**

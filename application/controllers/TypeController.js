@@ -23,3 +23,15 @@ exports.add = async(req,res,next)=>{
         next(error);
     }
 };
+
+exports.list  = async(req,res,next)=>{
+
+    try{
+        const ListA =await TypeA.findAll()
+        return res.json(ListA)
+    }catch(err){
+        console.log(err)
+        return res.status(500).json({error: 'Something went went wrong'})
+
+    } 
+};
