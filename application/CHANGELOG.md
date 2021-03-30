@@ -15,7 +15,6 @@
 - The user model is updated.
 - [VALLESOFT-95] Service created to create warehouse. 
 
-
 ## [1.1.0](https://github.com/TEAMVALLESOFT/Back_Inventory/pull/6) (2021-03-28)
 **Added**
 - The gitignore file is updated.
