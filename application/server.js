@@ -1,8 +1,10 @@
 const express = require ('express');
 const apiRouter = require('./routes/api');
 const bodyParser = require('body-parser');
-const app = express();
 require('./Config/db');
+const app = express();
+    app.use(cors());
+
 
 // settings
 app.set('port',process.env.PORT || 3000);
