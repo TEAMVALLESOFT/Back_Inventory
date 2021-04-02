@@ -1,11 +1,11 @@
 const bcrypt = require('bcryptjs');
-const {User} = require('../Config/db');
+const db = require ('../models');
 const tokenServices = require('../services/token');
 
 
 exports.add = async(req,res,next)=>{
     try{  
-        const Usuario = await User.findOne({where: {email: req.body.email}});
+        const Usuario = await db.user.findOne({where: {email: req.body.email}});
         if(Usuario){
             res.status(409).send({
                 message: 'El email ya se encuentra en uso.'
@@ -13,7 +13,7 @@ exports.add = async(req,res,next)=>{
         }
         else{
             req.body.password =  bcrypt.hashSync(req.body.password,10);
-            const Usuario = await User.create(req.body);
+            const Usuario = await  db.user.create(req.body);
             res.status(200).send({
                 message: 'Usuario creado con exito.'
             });
@@ -28,7 +28,7 @@ exports.add = async(req,res,next)=>{
 
 exports.login = async(req,res,next)=>{
     try{
-        const Usuario = await User.findOne({where: {email: req.body.email}});
+        const Usuario = await  db.user.findOne({where: {email: req.body.email}});
         if(Usuario){
             const passwordIsValid = bcrypt.compareSync(req.body.password, Usuario.password);
             if(passwordIsValid){

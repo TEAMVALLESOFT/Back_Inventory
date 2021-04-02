@@ -1,9 +1,9 @@
-const {TypeA} = require('../Config/db');
+const db = require ('../models');
 
 
 exports.add = async(req,res,next)=>{
     try{  
-        const typee = await TypeA.findOne({where: {article_type_name: req.body.article_type_name}});
+        const typee = await db.article_type.findOne({where: {article_type_name: req.body.article_type_name}});
 
         if(typee){
             res.status(409).send({
@@ -11,10 +11,12 @@ exports.add = async(req,res,next)=>{
             })
         }
         else{
-            const typee = await TypeA.create(req.body);
-            res.status(200).send({
-                message: 'Tipo de articulo creado exitosamente.'
-            });
+            const Object = await db.article_type.create(req.body);
+            if(Object){
+                res.status(200).send({
+                    message: 'Tipo de articulo creado exitosamente.'
+                 });
+            }
         }
     }catch(error){
         res.status(500).send({
@@ -27,7 +29,7 @@ exports.add = async(req,res,next)=>{
 exports.list  = async(req,res,next)=>{
 
     try{
-        const ListA =await TypeA.findAll()
+        const ListA =await db.article_type.findAll()
         if(ListA){
 
             res.status(200).json(ListA);

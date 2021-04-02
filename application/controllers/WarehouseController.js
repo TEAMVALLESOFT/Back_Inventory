@@ -1,14 +1,11 @@
-const {Warehouse} = require('../Config/db');
-const {User} = require('../Config/db');
-
+const db = require ('../models');
 
 exports.create = async(req,res,next)=>{
     try {
-        const Usuario = await User.findOne({where: {email: req.body.email}});
+        const Usuario = await db.user.findOne({where: {email: req.body.email}});
         if(Usuario){
-            const id = Usuario.user_id;
-            const registro = await Warehouse.create({warehouse_name: req.body.warehouse_name,
-                desc: req.body.desc, address: req.body.address, user_fk: id});
+            const registro = await db.warehouse.create({warehouse_name: req.body.warehouse_name,
+                desc: req.body.desc, address: req.body.address, user_fk: Usuario.id});
                 res.status(200).send({
                     message: 'Bodega creada con exito.'
                 });       
@@ -28,7 +25,14 @@ exports.create = async(req,res,next)=>{
 
 exports.list = async(req, res, next)=>{
     try {
-        const bodegas = await Warehouse.findAll();
+        const bodegas = await db.warehouse.findAll({
+            include: {
+                model : db.user,
+                attributes: ['user_name', 'email', 'phone'],
+                required: true,
+                as: 'encargado',  
+            }
+        });
         if(bodegas){
             res.status(200).json(bodegas);
         }else{

@@ -1,5 +1,5 @@
 const jwt = require('jsonwebtoken');
-const {User} = require('../Config/db');
+const db = require ('../models');
 
 const checkToken = async(token) =>{
     let localID = null;
@@ -10,9 +10,8 @@ const checkToken = async(token) =>{
         return false;
     }
 
-    const Usuario = await User.findOne({where:{
-        id : localID,
-        estado : 1
+    const Usuario = await db.user.findOne({where:{
+        id : localID
     }});
     
     if(Usuario){
@@ -40,9 +39,8 @@ module.exports = {
     decode: async(token) =>{
         try{
             const { id } = await jwt.verify(token,'UnaFraseSecretaParaCodificar');
-            const user = await User.findOne({where: {
-                id : id,
-                estado : 1
+            const user = await db.user.findOne({where: {
+                id : id
             }});
             if(user){
                 return user;
