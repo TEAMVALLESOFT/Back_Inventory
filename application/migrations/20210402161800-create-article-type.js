@@ -18,7 +18,8 @@ module.exports = {
         type: Sequelize.STRING
       },
       classif: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        defaultValue: 'cocina, m_programa, m_campamento'
       },
       createdAt: {
         allowNull: false,
