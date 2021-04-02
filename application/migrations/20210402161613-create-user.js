@@ -15,7 +15,8 @@ module.exports = {
         type: Sequelize.STRING
       },
       branch: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        defaultValue: 'cachorro, lobato, webelo, scout, rover, SR'
       },
       phone: {
         type: Sequelize.STRING
