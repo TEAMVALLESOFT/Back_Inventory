@@ -7,14 +7,14 @@ exports.add = async(req,res,next)=>{
 
         if(typee){
             res.status(409).send({
-                message: 'El tipo de articulo deseado ya existe.'
+                message: 'El tipo de artículo deseado ya existe.'
             })
         }
         else{
             const Object = await db.article_type.create(req.body);
             if(Object){
                 res.status(200).send({
-                    message: 'Tipo de articulo creado exitosamente.'
+                    message: 'Tipo de artículo creado exitosamente.'
                  });
             }
         }
@@ -36,7 +36,7 @@ exports.list  = async(req,res,next)=>{
         }else{
 
             res.status(204).send({
-                message:'No hay bodegas en el sistema'
+                message:'No hay registros en el sistema'
             });
         }
         //return res.json(ListA)
