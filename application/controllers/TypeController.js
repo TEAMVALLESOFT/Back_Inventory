@@ -7,7 +7,7 @@ exports.add = async(req,res,next)=>{
 
         if(typee){
             res.status(409).send({
-                message: 'El tipo de articulo deseado ya existe.'
+                message: 'existe.'
             })
         }
         else{
