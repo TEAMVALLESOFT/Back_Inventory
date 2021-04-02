@@ -8,14 +8,14 @@ exports.add = async(req,res,next)=>{
         const Usuario = await db.user.findOne({where: {email: req.body.email}});
         if(Usuario){
             res.status(409).send({
-                message: 'El email ya se encuentra en uso.'
+                message: 'El correo electrónico ya se encuentra en uso.'
             })
         }
         else{
             req.body.password =  bcrypt.hashSync(req.body.password,10);
             const Usuario = await  db.user.create(req.body);
             res.status(200).send({
-                message: 'Usuario creado con exito.'
+                message: 'Usuario creado con éxito.'
             });
         }
     }catch(error){
