@@ -5,13 +5,13 @@ module.exports = (sequelize, type) => {
             primaryKey: true,
             autoIncrement: true
         },
-        user_name: type.STRING,
-        email: type.STRING,
-        branch: type.STRING,
-        phone: type.STRING,
+        user_name: type.STRING(45),
+        email: type.STRING(45),
+        branch: type.STRING(45),
+        phone: type.STRING(45),
         password: type.STRING(150)
     },{
-        tableName: 'USER'
+        tableName: 'user'
     });
     Usuario.associate = function(models) {
         // Las asociaciones con otros objetos deben ser definidos aquí.

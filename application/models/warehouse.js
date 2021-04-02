@@ -5,12 +5,12 @@ module.exports = (sequelize, type) => {
             primaryKey: true,
             autoIncrement: true
         },
-        warehouse_name: type.STRING,
-        desc: type.STRING,
-        address: type.STRING,
+        warehouse_name: type.STRING(45),
+        desc: type.STRING(100),
+        address: type.STRING(45),
         user_fk: type.INTEGER
     },{
-        tableName: 'WAREHOUSE'
+        tableName: 'warehouse'
     });
     Warehouse.associate = function(models) {
         this.belongsTo(models.Usuario,{ foreignKey: 'user_fk', as: 'Usuario'});
