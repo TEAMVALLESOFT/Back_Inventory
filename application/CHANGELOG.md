@@ -1,3 +1,7 @@
+## [1.5.1](https://github.com/TEAMVALLESOFT/Back_Inventory/pull/14) (2021-04-1)
+**Added**
+- [VALLESOFT-98] Bug fix in the "Item Type" controller and changes to existing models.
+
 ## [1.5.0](https://github.com/TEAMVALLESOFT/Back_Inventory/pull/11) (2021-03-29)
 **Added**
 - [VALLESOFT-98] Service created list all types of articles. 

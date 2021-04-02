@@ -5,12 +5,12 @@ module.exports = (sequelize, type) => {
             primaryKey: true,
             autoIncrement: true
         },
-        article_type_name: type.STRING,
+        article_type_name: type.STRING(45),
         is_parent: type.TINYINT,
-        desc: type.STRING,
-        classif: type.STRING
+        desc: type.STRING(100),
+        classif: type.STRING(45)
     },{
-        tableName: 'TYPE_ARTICLE'
+        tableName: 'article_type'
     });
 
     return Tipo;
