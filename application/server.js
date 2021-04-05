@@ -2,8 +2,8 @@ const express = require ('express');
 const apiRouter = require('./routes/api');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-require('./Config/db');
 
+//instancia de express en app
 const app = express();
     app.use(cors());
 

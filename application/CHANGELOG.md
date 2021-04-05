@@ -1,3 +1,7 @@
+## [1.6.0](https://github.com/TEAMVALLESOFT/Back_Inventory/pull/16) (2021-04-2)
+**Added/Modified**
+- [VALLESOFT-98] Update models, controllers and install sequelize-cli.
+
 ## [1.5.1](https://github.com/TEAMVALLESOFT/Back_Inventory/pull/14) (2021-04-1)
 **Added**
 - [VALLESOFT-98] Bug fix in the "Item Type" controller and changes to existing models.
