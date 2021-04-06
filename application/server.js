@@ -16,7 +16,7 @@ const app = express();
       })
 
 // settings
-app.set('port',process.env.PORT || 3000);
+app.set('port',process.env.PORT || 3001);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 
