@@ -11,7 +11,7 @@ exports.create = async(req,res,next)=>{
                 });       
         }else{
             res.status(404).send({
-                message: 'Es necesario que ingrese el email registrado de la persona a cargo de la bodega.'
+                message: 'El correo electronico no se encuentra registrado.'
             });
         }
     } catch (error) {
