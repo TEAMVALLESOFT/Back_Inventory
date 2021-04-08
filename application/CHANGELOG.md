@@ -1,3 +1,7 @@
+## [1.8.0](https://github.com/TEAMVALLESOFT/Back_Inventory/pull/20) (2021-04-8)
+**Added**
+- [VALLESOFT-185] Service created to list Articles.
+
 ## [1.7.0](https://github.com/TEAMVALLESOFT/Back_Inventory/pull/19) (2021-04-8)
 **Added**
 - [VALLESOFT-93] Service created to create Articles.
