@@ -70,25 +70,25 @@ exports.create = async (req, res, next) => {
 
                     else {
                         res.status(404).send({
-                            message: 'No es posible realizar la creación y asociación del articulo.'
+                            message: 'No es posible realizar la creación y asociación del artículo.'
                         });
                     }
                 }
                 else {
                     res.status(404).send({
-                        message: 'No es posible realizar la asociación del articulo.'
+                        message: 'No es posible realizar la asociación del artículo.'
                     });
                 }
             }
         }
         else {
             res.status(404).send({
-                message: 'No se encontro el tipo de articulo.'
+                message: 'No se encontro el tipo de artículo.'
             });
         }
     } catch (error) {
         res.status(500).send({
-            message: 'Error'
+            message: '¡Error en el servidor.!'
         });
         next(error);
     }
