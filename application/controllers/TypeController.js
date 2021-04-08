@@ -46,3 +46,22 @@ exports.list  = async(req,res,next)=>{
 
     } 
 };
+
+exports.ListbyClassif  = async(req,res,next)=>{
+
+    try{
+        const {classif} = req.params;
+        const type = await db.article_type.findAll({
+            where: {classif: classif}
+        });
+        if(type){
+            res.status(200).json(type);
+        }else{
+            res.status(404).send({
+                message:'No se encontraron registros.'
+            });
+        }
+    }catch(err){
+        return res.status(500).json({error: '¡Error en el servidor!.'});
+    } 
+};

@@ -1,3 +1,7 @@
+## [1.9.0](https://github.com/TEAMVALLESOFT/Back_Inventory/pull/21) (2021-04-8)
+**Added**
+- [VALLESOFT-185] Service created to list type_Articles by classif.
+
 ## [1.8.0](https://github.com/TEAMVALLESOFT/Back_Inventory/pull/20) (2021-04-8)
 **Added**
 - [VALLESOFT-185] Service created to list Articles.
