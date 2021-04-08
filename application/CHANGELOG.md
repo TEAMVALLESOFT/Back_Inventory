@@ -1,3 +1,7 @@
+## [1.7.0](https://github.com/TEAMVALLESOFT/Back_Inventory/pull/19) (2021-04-8)
+**Added**
+- [VALLESOFT-93] Service created to create Articles.
+
 ## [1.6.0](https://github.com/TEAMVALLESOFT/Back_Inventory/pull/16) (2021-04-2)
 **Added/Modified**
 - [VALLESOFT-98] Update models, controllers and install sequelize-cli.
