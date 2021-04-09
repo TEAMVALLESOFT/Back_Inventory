@@ -9,9 +9,11 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       borrowing_fk: {
+        allowNull: false,
         type: Sequelize.INTEGER
       },
       articles_fk: {
+        allowNull: false,
         type: Sequelize.INTEGER
       },
       createdAt: {
