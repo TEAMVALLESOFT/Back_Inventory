@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       this.belongsTo(models.borrowing,{foreignKey: 'borrowing_fk', as: 'Prestamo Asociado'});
-      this.belongsTo(models.article,{foreignKey: 'articles_fk', as: 'Articulo Asociado'})
+      this.belongsTo(models.article,{foreignKey: 'articles_fk', as: 'Articulo Asociado'});
     }
   };
   reservation.init({
