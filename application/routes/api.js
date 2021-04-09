@@ -3,6 +3,7 @@ const UsersRouter = require('./api/users');
 const WarehouseRouter = require('./api/warehouse');
 const TypeRouter = require('./api/type');
 const ArticleRouter = require('./api/article');
+const BorrowingRouter = require('./api/borrowing');
 
 
 router.use('/user', UsersRouter);
