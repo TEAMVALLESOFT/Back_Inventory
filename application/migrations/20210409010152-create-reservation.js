@@ -10,11 +10,19 @@ module.exports = {
       },
       borrowing_fk: {
         allowNull: false,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: { // User belongsTo Company 1:1
+          model: 'borrowing',
+          key: 'id'
+        }
       },
       articles_fk: {
         allowNull: false,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: { // User belongsTo Company 1:1
+          model: 'article',
+          key: 'id'
+        }
       },
       createdAt: {
         allowNull: false,
