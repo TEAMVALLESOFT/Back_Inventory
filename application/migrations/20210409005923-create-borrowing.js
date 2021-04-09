@@ -24,7 +24,11 @@ module.exports = {
       },
       user_fk: {
         allowNull: false,
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: { // User belongsTo Company 1:1
+          model: 'users',
+          key: 'id'
+        }
       },
       createdAt: {
         allowNull: false,
