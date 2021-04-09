@@ -9,5 +9,6 @@ router.use('/user', UsersRouter);
 router.use('/warehouse', WarehouseRouter);
 router.use('/article_type',TypeRouter);
 router.use('/article', ArticleRouter);
+router.use('/borrowing',BorrowingRouter);
 
 module.exports = router;
