@@ -1,0 +1,252 @@
+openapi: "3.0.0"
+
+info:
+  title: "Inventory"
+  description: "This is the API specification of Inventory"
+  version: "1.0.0"
+  contact:
+    name: "Juan David González Mosquera"
+    email: "juan_d.gonzalez_m@uao.edu.co"
+
+paths:
+  /article/create:
+    post:
+      tags:
+        - "warehouse"
+      summary: "Create warehouse"
+      description: "We can create warehouses with this service"
+      operationId: "Create"
+      requestBody:
+        description: "warehouse information"
+        required: true
+        content: 
+          application/json: 
+            schema: 
+              type: object
+              properties: 
+                available_state:
+                  type: "string"
+                  example: "disponible"
+                physical_state: 
+                  type: "string"
+                  example: "funcional"
+                branch:
+                  type: "string"
+                  example: "Lobato"
+                obs:
+                  type: "string"
+                  example: null
+                warehouse_fk: 
+                  type: "integer"
+                  example: 2
+                article_type_fk: 
+                  type: "integer"
+                  example: 4
+                secondary_article_list:
+                  type: "object"
+                  properties:
+                      data:
+                        type: "array"
+                        items:
+                          type: "object"
+                          properties:
+                            available_state:
+                              type: "string"
+                              example: "disponible"
+                            physical_state: 
+                              type: "string"
+                              example: "funcional"
+                            branch:
+                              type: "string"
+                              example: "Lobato"
+                            obs:
+                              type: "string"
+                              example: null
+                            warehouse_fk: 
+                              type: "integer"
+                              example: 2
+                            article_type_fk: 
+                              type: "integer"
+                              example: 4                
+      responses:
+        200:
+          description: "successful operation"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties: 
+                  message: 
+                    type: "string"
+                    example: "El artículo fue creado con éxito."
+        404:
+          description: "bad request"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties: 
+                  message: 
+                    type: "string"
+                    example: "No es posible realizar la creación y asociación del artículo."
+        500: 
+          description: "bad request"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties: 
+                  message: 
+                    type: "string"
+                    example: "¡Error en el servidor!."
+  /article/list:
+    get:
+      tags:
+        - "articles"
+      summary: "list articles"
+      description: "We can list articles with this service"
+      operationId: "list"
+      responses:
+        200:
+          description: "successful operation"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties:
+                $ref: "#/components/schemas/article"       
+        404:
+          description: "bad request"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties: 
+                  message: 
+                    type: "string"
+                    example: "No hay artículos en el sistema."
+        500: 
+          description: "bad request"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties: 
+                  message: 
+                    type: "string"
+                    example: "¡Error en el servidor!."
+components:
+  schemas:
+    article:
+      type: "object"
+      properties:
+         data:
+          type: "array"
+          items:
+            type: "object"
+            properties:
+              id:
+                type: "integer"
+                example: 10
+              label:
+                type: "string"
+                example: "CAM-CAR-LOB-003"
+              available_state:
+                  type: "string"
+                  example: "disponible"
+              physical_state: 
+                  type: "string"
+                  example: "funcional"
+              branch:
+                  type: "string"
+                  example: "Lobato"
+              obs:
+                  type: "string"
+                  example: null
+              warehouse_fk: 
+                  type: "integer"
+                  example: 2
+              article_type_fk: 
+                  type: "integer"
+                  example: 4                  
+              Tipo: 
+                  type: "object"
+                  properties:
+                    id: 
+                      type: "integer"
+                      example: 2
+                    article_type_name: 
+                      type: "string"
+                      example: "Linterna"
+                    is_parent: 
+                      type: "integer"
+                      example: 0
+                    desc: 
+                      type: "string"
+                      example: "Linterna"
+                    classif: 
+                      type: "string"
+                      example: "Elementos para acampar"
+                    createdAt: 
+                      type: "string"
+                      example: "2021-04-08T04:30:46.000Z"
+                    updatedAt: 
+                      type: "string"
+                      example: "2021-04-08T04:30:46.000Z"
+              Bodega: 
+                  type: "object"
+                  properties:
+                    id: 
+                      type: "integer"
+                      example: 2
+                    warehouse_name: 
+                      type: "string"
+                      example: "Bodega#1"
+                    address: 
+                      type: "string"
+                      example: "Calle 31 # A 3 - 40"
+                    desc: 
+                      type: "string"
+                      example: "Bodega de Almacenado"
+                    user_fk: 
+                      type: "integer"
+                      example: 2
+                    createdAt: 
+                      type: "string"
+                      example: "2021-04-08T04:30:46.000Z"
+                    updatedAt: 
+                      type: "string"
+                      example: "2021-04-08T04:30:46.000Z"
+              Asociado: 
+                  type: "object"
+                  properties:
+                    id: 
+                      type: "integer"
+                      example: 2
+                    label: 
+                      type: "string"
+                      example: "CAM-CAR-LOB-001"
+                    available_state:
+                      type: "string"
+                      example: "disponible"
+                    physical_state: 
+                      type: "string"
+                      example: "funcional"
+                    branch:
+                      type: "string"
+                      example: "Lobato"
+                    obs:
+                      type: "string"
+                      example: null
+                    warehouse_fk: 
+                      type: "integer"
+                      example: 2
+                    article_type_fk: 
+                      type: "integer"
+                      example: 2                
+                    createdAt: 
+                      type: "string"
+                      example: "2021-04-08T04:30:46.000Z"
+                    updatedAt: 
+                      type: "string"
+                      example: "2021-04-08T04:30:46.000Z"
