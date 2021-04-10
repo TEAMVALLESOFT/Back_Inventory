@@ -38,7 +38,7 @@ exports.login = async(req,res,next)=>{
                     token : token,
                     user :
                     {   
-                        id : Usuario.user_id,
+                        id : Usuario.id,
                         name: Usuario.user_name,
                         email: Usuario.email
                     }             
