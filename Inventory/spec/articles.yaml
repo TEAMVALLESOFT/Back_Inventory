@@ -12,12 +12,12 @@ paths:
   /article/create:
     post:
       tags:
-        - "warehouse"
-      summary: "Create warehouse"
-      description: "We can create warehouses with this service"
+        - "article"
+      summary: "Create article"
+      description: "We can create article with this service"
       operationId: "Create"
       requestBody:
-        description: "warehouse information"
+        description: "article information"
         required: true
         content: 
           application/json: 
