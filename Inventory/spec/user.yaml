@@ -1,0 +1,151 @@
+openapi: "3.0.0"
+
+info:
+  title: "Inventory"
+  description: "This is the API specification of Inventory"
+  version: "1.0.0"
+  contact:
+    name: "Juan David González Mosquera"
+    email: "juan_d.gonzalez_m@uao.edu.co"
+
+paths:
+  /user/create:
+    post:
+      tags:
+        - "User"
+      summary: "Create User"
+      description: "We can create user with this service"
+      operationId: "create"
+      requestBody:
+        description: "user information"
+        required: true
+        content: 
+          application/json: 
+            schema: 
+              type: object
+              properties: 
+                name:
+                  type: "string"
+                  example: "test"
+                email: 
+                  type: "string"
+                  example: "test@example.com"
+                branch:
+                  type: "string"
+                  example: "Lobato"
+                phone:
+                  type: "string"
+                  example: "310999999"
+                password:
+                  type: "string"
+                  example: "password"
+      responses:
+        200:
+          description: "successful operation"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties: 
+                  message: 
+                    type: "string"
+                    example: "Usuario creado con éxito."
+        409:
+          description: "bad request"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties: 
+                  message: 
+                    type: "string"
+                    example: "El correo electrónico ya se encuentra en uso."
+        500: 
+          description: "bad request"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties: 
+                  message: 
+                    type: "string"
+                    example: "¡Error en el servidor!."
+  user/login:
+    post:
+      tags:
+        - "User"
+      summary: "Login User"
+      description: "We can login user with this service"
+      operationId: "login"
+      requestBody:
+        description: "user information"
+        required: true
+        content: 
+          application/json: 
+            schema: 
+              type: object
+              properties: 
+                email: 
+                  type: "string"
+                  example: "test@example.com"
+                password:
+                  type: "string"
+                  example: "password"
+      responses:
+        200:
+          description: "successful operation"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties: 
+                  message: 
+                    type: "string"
+                    example: "Bienvenido."
+                  token:
+                    type: "string"
+                    example: "yJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywidXNlcl9uYW1lIjoianVhbmRhdmlkIiwiZW1haWwiOiJHb256YWxlekBleGFtcGxlLmNvbSIsImlhdCI6MTYxODA4MDc3NSwiZXhwIjoxNjE4MTY3MTc1fQ.xfkujqKrw4DYiIBWpKDCXAzJ5EynB11XzFwDx5BwrUg"
+                  $ref: "#/components/schemas/userlogin"            
+        401:
+          description: "bad request"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties: 
+                  message: 
+                    type: "string"
+                    example: "Error en el ususario o contraseña."
+        404: 
+          description: "bad request"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties: 
+                  message: 
+                    type: "string"
+                    example: "Error en el ususario o contraseña."
+components:
+  schemas:
+    userlogin:
+      type: "object"
+      required:
+      properties:
+        data:
+          type: "array"
+          items:
+            type: "object"
+            properties:
+              id:
+                type: "integer"
+                example: 10
+              name:
+                type: "string"
+                example: "test"
+              email:
+                type: "string"
+                example: "test@example.com"
+
+  
+          

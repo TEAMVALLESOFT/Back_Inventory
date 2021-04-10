@@ -36,7 +36,7 @@ exports.list = async(req, res, next)=>{
         if(bodegas){
             res.status(200).json(bodegas);
         }else{
-            res.status(204).send({
+            res.status(404).send({
                 message: 'No hay bodegas en el sistema.'
             });
         }    
