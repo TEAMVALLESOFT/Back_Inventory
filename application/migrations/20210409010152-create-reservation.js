@@ -16,7 +16,7 @@ module.exports = {
           key: 'id'
         }
       },
-      articles_fk: {
+      article_fk:{
         allowNull: false,
         type: Sequelize.INTEGER,
         references: { // User belongsTo Company 1:1

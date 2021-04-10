@@ -9,7 +9,9 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       auth_state: {
-        type: Sequelize.STRING
+        allowNull: false,
+        type: Sequelize.STRING,
+        defaultValue: 'Aprobado, Denegado, Pendiente'
       },
       pick_up_date: {
         allowNull: false,
