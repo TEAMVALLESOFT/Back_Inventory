@@ -1,3 +1,7 @@
+## [1.10.1](https://github.com/TEAMVALLESOFT/Back_Inventory/pull/27) (2021-04-9)
+**Modified**
+- [VALLESOFT-102] fix service to create Borrowing.
+
 ## [1.10.0](https://github.com/TEAMVALLESOFT/Back_Inventory/pull/23) (2021-04-8)
 **Added**
 - [VALLESOFT-102] Service created to create Borrowing.

@@ -1,48 +1,57 @@
 const db = require('../models');
 
-exports.add = async (req, res, next) => {
+exports.create = async (req, res, next) => {
     try {
         const User = await db.user.findOne({ where: { id: req.body.user_id } });
         if (User != null) {
             const array = req.body.article_list;
-            console.log(array.length)
             if (array != null) {
-
-                const registro = await db.borrowing.create({
-                    user_fk: req.body.user_id,
-                    creation_date: req.body.creation_date,
-                    auth_state: req.body.auth_state,
-                    pick_up_date: req.body.pick_up_date,
-                    return_date: req.body.return_date,
-                });
-               
-                const borrowingId = await db.borrowing.findOne({ where: { id: registro.id } })
-                if (borrowingId != null) {
-
-                    console.log("a")
-                    for (var i = 0; i < array.length; i++) {
-                        console.log("b")
-                        const registroR = await db.reservation.create({
-                            article_fk: array[i].article_id,
-                            borrowing_fk: borrowingId.id,
-                        });
+                let ican = 0;
+                for (var j = 0; j < array.length; j++) {
+                    const type = await db.article.findOne({ where: { id: array[j].article_id } });
+                    if (type) {
+                        ican += 1;
+                    }
+                    else {
+                        ican = ican;
                     }
                 }
+                if (ican === array.length) {
+                    const registro = await db.borrowing.create({
+                        user_fk: req.body.user_id,
+                        auth_state: "Pendiente",
+                        pick_up_date: req.body.pick_up_date,
+                        return_date: req.body.return_date,
+                    });
+                    const borrowing = await db.borrowing.findOne({ where: { id: registro.id } });
+                    if (borrowing != null) {
+                        for (var i = 0; i < array.length; i++) {
+                            const reservacion = await db.reservation.create({
+                                article_fk: array[i].article_id,
+                                borrowing_fk: borrowing.id,
+                            });
+                        }
+                    }
+                    res.status(200).send({
+                        message: 'El Préstamo fue creado con éxito.'
+                    });
 
-                res.status(200).send({
-                    message: 'El Prestamo fue creado con éxito.'
-                });
-
+                }
+                else {
+                    res.status(404).send({
+                        message: 'No seleccionó un artículo existente.'
+                    });
+                }
             }
             else {
                 res.status(404).send({
-                    message: 'No seleccionaste ningun articulo'
-                })
+                    message: 'No se encontraron los artículos.'
+                });
             }
         }
         else {
             res.status(404).send({
-                message: 'No se encontro el Usuario.'
+                message: 'No se encontro el usuario.'
             });
         }
     } catch (error) {
