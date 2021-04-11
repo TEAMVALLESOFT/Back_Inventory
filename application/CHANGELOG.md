@@ -1,4 +1,8 @@
-## [1.11.0](https://github.com/TEAMVALLESOFT/Back_Inventory/pull/30) (2021-04-10)
+## [1.12.0](https://github.com/TEAMVALLESOFT/Back_Inventory/pull/31) (2021-04-11)
+**Modified**
+- Modified server.js to add https server
+
+## [1.11.0](https://github.com/TEAMVALLESOFT/Back_Inventory/pull/30) (2021-04-11)
 **Modified**
 - fix findall error and change findAll by findAndCountAll method.
 - [VALLESOFT-101-107] Added service to filter articles by warehouse_id, branch and article_type.
