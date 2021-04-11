@@ -116,7 +116,7 @@ exports.list = async (req, res, next) => {
             res.status(200).json(registro);
         } else {
             res.status(404).send({
-                message: 'No hay Tipos de artículo en el sistema'
+                message: 'No hay artículos en el sistema.'
             })
         }
     } catch (error) {
