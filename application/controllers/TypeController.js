@@ -4,7 +4,6 @@ const db = require('../models');
 exports.add = async (req, res, next) => {
     try {
         const typee = await db.article_type.findOne({ where: { article_type_name: req.body.article_type_name } });
-
         if (typee) {
             res.status(409).send({
                 message: 'El tipo de artículo deseado ya existe.'
@@ -31,28 +30,25 @@ exports.list = async (req, res, next) => {
     try {
         const { classif } = req.query;
         if (classif) {
-            const type = await db.article_type.findAll({
+            const type = await db.article_type.findAndCountAll({
                 where: { classif: classif }
             });
-            if (type) {
-
+            if (type.count != 0) {
                 res.status(200).json(type);
             } else {
 
                 res.status(204).send({
-                    message: 'No hay registros en el sistema'
+                    message: 'No hay registros en el sistema.'
                 });
             }
         }
         else {
-            const type = await db.article_type.findAll()
-            if (type) {
-
+            const type = await db.article_type.findAndCountAll()
+            if (type.count != 0) {
                 res.status(200).json(type);
             } else {
-
                 res.status(204).send({
-                    message: 'No hay registros en el sistema'
+                    message: 'No hay registros en el sistema.'
                 });
             }
         }

@@ -102,10 +102,32 @@ paths:
   /article/list:
     get:
       tags:
-        - "articles"
+        - "article"
       summary: "list articles"
       description: "We can list articles with this service"
       operationId: "list"
+      parameters:
+        - name: "article_type"
+          in: "query"
+          description: "id used to filter articles by article type"
+          required: false
+          schema:
+            type: "integer"
+            format: "int64"
+        - name: "warehouse_id"
+          in: "query"
+          description: "id used to filter articles by warehouses"
+          required: false
+          schema:
+            type: "integer"
+            format: "int64"
+        - name: "branch"
+          in: "query"
+          description: "branch to which the article belongs"
+          required: false
+          schema:
+            type: "string"
+            example: "Lobatos"
       responses:
         200:
           description: "successful operation"
@@ -139,8 +161,13 @@ components:
   schemas:
     article:
       type: "object"
+      required:
+        - "name"
       properties:
-         data:
+        count:
+          type: "integer"
+          example: 1
+        data:
           type: "array"
           items:
             type: "object"

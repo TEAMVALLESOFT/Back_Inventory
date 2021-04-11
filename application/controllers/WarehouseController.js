@@ -25,7 +25,7 @@ exports.create = async(req,res,next)=>{
 
 exports.list = async(req, res, next)=>{
     try {
-        const bodegas = await db.warehouse.findAll({
+        const bodegas = await db.warehouse.findAndCountAll({
             include: {
                 model : db.user,
                 attributes: ['user_name', 'email', 'phone'],
@@ -33,7 +33,7 @@ exports.list = async(req, res, next)=>{
                 as: 'encargado',  
             }
         });
-        if(bodegas){
+        if(bodegas.count != 0){
             res.status(200).json(bodegas);
         }else{
             res.status(404).send({
