@@ -1,3 +1,8 @@
+## [1.11.0](https://github.com/TEAMVALLESOFT/Back_Inventory/pull/30) (2021-04-10)
+**Modified**
+- fix findall error and change findAll by findAndCountAll method.
+- [VALLESOFT-101-107] Added service to filter articles by warehouse_id, branch and article_type.
+
 ## [1.10.1](https://github.com/TEAMVALLESOFT/Back_Inventory/pull/27) (2021-04-9)
 **Modified**
 - [VALLESOFT-102] fix service to create Borrowing.
