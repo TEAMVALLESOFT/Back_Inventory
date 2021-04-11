@@ -6,9 +6,9 @@ exports.create = async (req, res, next) => {
         if (parent != null) {
             if (parent.is_parent === 0) {
                 var count = await db.article.count({}) + 1;
-                var article_label = parent.classif.substring(0, 3) + req.body.branch.substring(0, 3) + '_' + count;
+                var article_label = parent.classif.substring(0, 3) +'-'+ parent.article_type_name.substring(0, 3) + '-' + req.body.branch.substring(0, 3) + '-' + count;
                 const registro = await db.article.create({
-                    label: article_label,
+                    label: article_label.toUpperCase(),
                     available_state: req.body.available_state,
                     physical_state: req.body.physical_state,
                     branch: req.body.branch,
@@ -96,28 +96,158 @@ exports.create = async (req, res, next) => {
 
 exports.list = async (req, res, next) => {
     try {
-        const registro = await db.article.findAll({
-            include: [{
-                model: db.article_type,
-                required: true,
-                as: 'Tipo'
-            },
-            {
-                model: db.warehouse,
-                required: true,
-                as: 'Bodega'
-            },
-            {
-                model: db.article,
-                as: 'Asociado'
-            }],
-        });
-        if (registro) {
-            res.status(200).json(registro);
-        } else {
-            res.status(404).send({
-                message: 'No hay artículos en el sistema.'
-            })
+        const { article_type } = req.query;
+        const { branch } = req.query;
+        const { warehouse_id } = req.query;
+
+        if (article_type && branch && warehouse_id) {
+            const registro = await db.article.findAndCountAll({
+                where: {
+                    article_type_fk: article_type,
+                    branch: branch,
+                    warehouse_fk: warehouse_id
+                },
+                include: [{
+                    model: db.article_type,
+                    required: true,
+                    as: 'Tipo'
+                },
+                {
+                    model: db.warehouse,
+                    required: true,
+                    as: 'Bodega'
+                },
+                {
+                    model: db.article,
+                    as: 'Asociado'
+                }],
+            });
+
+            if (registro.count != 0) {
+                res.status(200).json(registro);
+            } else {
+                res.status(404).send({
+                    message: 'No hay artículos con esas caracteristicas en el sistema.'
+                });
+            }
+        }
+        else {
+            if(article_type){
+                const registro = await db.article.findAndCountAll({
+                    where: {
+                        article_type_fk: article_type,
+                    },
+                    include: [{
+                        model: db.article_type,
+                        required: true,
+                        as: 'Tipo'
+                    },
+                    {
+                        model: db.warehouse,
+                        required: true,
+                        as: 'Bodega'
+                    },
+                    {
+                        model: db.article,
+                        as: 'Asociado'
+                    }],
+                });
+    
+                if (registro.count != 0) {
+                    res.status(200).json(registro);
+                } else {
+                    res.status(404).send({
+                        message: 'No hay artículos con esas caracteristicas en el sistema.'
+                    });
+                }
+            }
+            else{
+                if(branch){
+                    const registro = await db.article.findAndCountAll({
+                        where: {
+                            branch: branch,
+                        },
+                        include: [{
+                            model: db.article_type,
+                            required: true,
+                            as: 'Tipo'
+                        },
+                        {
+                            model: db.warehouse,
+                            required: true,
+                            as: 'Bodega'
+                        },
+                        {
+                            model: db.article,
+                            as: 'Asociado'
+                        }],
+                    });
+        
+                    if (registro.count != 0) {
+                        res.status(200).json(registro);
+                    } else {
+                        res.status(404).send({
+                            message: 'No hay artículos con esas caracteristicas en el sistema.'
+                        });
+                    }
+                }
+                else{
+                    if(warehouse_id){
+                        const registro = await db.article.findAndCountAll({
+                            where: {
+                                warehouse_fk: warehouse_id
+                            },
+                            include: [{
+                                model: db.article_type,
+                                required: true,
+                                as: 'Tipo'
+                            },
+                            {
+                                model: db.warehouse,
+                                required: true,
+                                as: 'Bodega'
+                            },
+                            {
+                                model: db.article,
+                                as: 'Asociado'
+                            }],
+                        });
+            
+                        if (registro.count != 0) {
+                            res.status(200).json(registro);
+                        } else {
+                            res.status(404).send({
+                                message: 'No hay artículos con esas caracteristicas en el sistema.'
+                            });
+                        }
+                    }
+                    else{
+                        const registro = await db.article.findAndCountAll({
+                            include: [{
+                                model: db.article_type,
+                                required: true,
+                                as: 'Tipo'
+                            },
+                            {
+                                model: db.warehouse,
+                                required: true,
+                                as: 'Bodega'
+                            },
+                            {
+                                model: db.article,
+                                as: 'Asociado'
+                            }],
+                        });
+                        if (registro.count != 0) {
+                            res.status(200).json(registro);
+                        } else {
+                            res.status(404).send({
+                                message: 'No hay artículos en el sistema.'
+                            });
+                        }
+                    }
+                }
+            }  
         }
     } catch (error) {
         res.status(500).send({
