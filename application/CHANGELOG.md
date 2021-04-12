@@ -1,3 +1,7 @@
+## [1.12.1](https://github.com/TEAMVALLESOFT/Back_Inventory/pull/32) (2021-04-12)
+**Modified**
+- Modified server.js to fix readfileSync
+
 ## [1.12.0](https://github.com/TEAMVALLESOFT/Back_Inventory/pull/31) (2021-04-11)
 **Modified**
 - Modified server.js to add https server
