@@ -29,8 +29,8 @@ app.use('/api', apiRouter);
 // start sever
 if (fs.existsSync(crPath) && fs.existsSync(pkPath)) {
     https.createServer({
-        cert: fs.readFile(crPath),
-        key: fs.readFile(pkPath)
+        cert: fs.readFileSync(crPath),
+        key: fs.readFileSync(pkPath)
     }),
         app.listen(app.get('port'), (error) => {
             if (!error) {
