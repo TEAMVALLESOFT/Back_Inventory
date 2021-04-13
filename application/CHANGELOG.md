@@ -1,3 +1,8 @@
+## [1.13.0](https://github.com/TEAMVALLESOFT/Back_Inventory/pull/33) (2021-04-12)
+**Modified/Added**
+- Modified server.js to fix error
+- [VALLESOFT-106] Added service to create returning.
+
 ## [1.12.0](https://github.com/TEAMVALLESOFT/Back_Inventory/pull/31) (2021-04-11)
 **Modified**
 - Modified server.js to add https server
