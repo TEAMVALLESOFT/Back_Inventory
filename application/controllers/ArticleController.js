@@ -13,7 +13,8 @@ exports.create = async (req, res, next) => {
                     physical_state: req.body.physical_state,
                     branch: req.body.branch,
                     warehouse_fk: req.body.warehouse_fk,
-                    article_type_fk: req.body.article_type_fk
+                    article_type_fk: req.body.article_type_fk,
+                    obs: req.body.obs
                 });
                 res.status(200).send({
                     message: 'El artículo fue creado con éxito.'
@@ -41,7 +42,8 @@ exports.create = async (req, res, next) => {
                             physical_state: req.body.physical_state,
                             branch: req.body.branch,
                             warehouse_fk: req.body.warehouse_fk,
-                            article_type_fk: req.body.article_type_fk
+                            article_type_fk: req.body.article_type_fk,
+                            obs: req.body.obs
                         });
                         const ObjectParent = await db.article.findOne({ where: { id: registro.id } });
                         if (ObjectParent) {
@@ -57,7 +59,8 @@ exports.create = async (req, res, next) => {
                                         branch: array[i].branch,
                                         warehouse_fk: array[i].warehouse_fk,
                                         article_type_fk: type.id,
-                                        article_fk: ObjectParent.id
+                                        article_fk: ObjectParent.id,
+                                        obs: array[i].obs
                                     });
                                 }
                             }
