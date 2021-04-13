@@ -1,3 +1,7 @@
+## [1.3.0](https://github.com/TEAMVALLESOFT/Back_Inventory/pull/34) (2021-04-13)
+**Added**
+- [VALLESOFT-204] Added documentation to list, approve and reject returning. 
+
 ## [1.2.0](https://github.com/TEAMVALLESOFT/Back_Inventory/pull/33) (2021-04-12)
 **Added**
 - [VALLESOFT-106] Added documentation to create returning.

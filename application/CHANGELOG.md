@@ -1,3 +1,7 @@
+## [1.14.0](https://github.com/TEAMVALLESOFT/Back_Inventory/pull/34) (2021-04-13)
+**Modified**
+- [VALLESOFT-204] Added service to list, approve and reject returning.
+
 ## [1.13.0](https://github.com/TEAMVALLESOFT/Back_Inventory/pull/33) (2021-04-12)
 **Modified/Added**
 - Modified server.js to fix error
