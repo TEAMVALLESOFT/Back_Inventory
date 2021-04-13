@@ -32,6 +32,13 @@ module.exports = {
           key: 'id'
         }
       },
+      auth_user_fk: {
+        type: Sequelize.INTEGER,
+        references: { // User belongsTo Company 1:1
+          model: 'users',
+          key: 'id'
+        }
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE

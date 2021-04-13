@@ -61,3 +61,111 @@ exports.create = async (req, res, next) => {
         next(error);
     }
 };
+
+exports.list = async (req, res, next) => {
+
+    try {
+
+        const { id } = req.query;
+        if (id) {
+            const BorroI = await db.borrowing.findAndCountAll({
+                where: { id: id }
+            });
+            if (BorroI.count != 0) {
+                res.status(200).json(BorroI);
+            } else {
+
+                res.status(204).send({
+                    message: 'No hay registros en el sistema.'
+                });
+            }
+        }
+        else {
+            const borro = await db.borrowing.findAndCountAll()
+            if (borro.count != 0) {
+                res.status(200).json(borro);
+            } else {
+                res.status(204).send({
+                    message: 'No hay registros en el sistema.'
+                });
+            }
+        }
+    } catch (err) {
+        console.log(err)
+        return res.status(500).json({ error: '¡Error en el servidor!.' });
+
+    }
+};
+
+
+exports.approve = async (req, res, next) => {
+
+
+    try {
+        const { obs } = req.body;
+        const { auth_user_fk } = req.body;
+        if (obs) {
+
+            const aprovar = await db.borrowing.update({ auth_state: 'Aprobado', obs: obs,auth_user_fk: auth_user_fk},
+                {
+                    where: {
+                        id: req.body.borrowing_id
+                    },
+                });
+            res.status(200).send({
+                message: 'Constancia de devolución Aprobada.'
+            });
+        } else {
+            const aprovar = await db.borrowing.update({ auth_state: 'Aprobado',auth_user_fk: auth_user_fk},
+                {
+                    where: {
+                        id: req.body.borrowing_id
+                    },
+                });
+            res.status(200).send({
+                message: 'Constancia de devolución Aprobada.'
+            });
+        }
+    } catch (error) {
+        res.status(500).send({
+            message: 'Error en el servidor!'
+        });
+        next(error);
+    }
+};
+
+
+exports.reject = async (req, res, next) => {
+
+
+    try {
+        const { obs } = req.body;
+        const { auth_user_fk } = req.body;
+        if (obs) {
+            const aprovar = await db.borrowing.update({ auth_state: 'Denegado', obs: obs,auth_user_fk: auth_user_fk },
+                {
+                    where: {
+                        id: req.body.borrowing_id
+                    },
+                });
+            res.status(200).send({
+                message: 'Constancia de devolución Rechazada.'
+            });
+        } else {
+            const aprovar = await db.borrowing.update({ auth_state: 'Denegado',auth_user_fk: auth_user_fk},
+                {
+                    where: {
+                        id: req.body.borrowing_id
+                    },
+                });
+            res.status(200).send({
+                message: 'Constancia de devolución Rechazada.'
+            });
+        }
+    } catch (error) {
+        res.status(500).send({
+            message: 'Error en el servidor!'
+        });
+        next(error);
+    }
+};

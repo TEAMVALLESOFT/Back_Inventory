@@ -12,6 +12,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       this.belongsTo(models.user,{foreignKey: 'user_fk', as: 'Usuario asociado'});
+      this.belongsTo(models.user,{foreignKey: 'auth_user_fk', as: 'Usuario que Autoriza'});
     }
   };
   borrowing.init({
@@ -19,7 +20,8 @@ module.exports = (sequelize, DataTypes) => {
     pick_up_date: DataTypes.DATE,
     return_date: DataTypes.DATE,
     obs: DataTypes.STRING,
-    user_fk: DataTypes.INTEGER
+    user_fk: DataTypes.INTEGER,
+    auth_user_fk: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'borrowing',
