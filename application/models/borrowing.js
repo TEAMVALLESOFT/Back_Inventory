@@ -20,6 +20,7 @@ module.exports = (sequelize, DataTypes) => {
     pick_up_date: DataTypes.DATE,
     return_date: DataTypes.DATE,
     obs: DataTypes.STRING,
+    has_returning: DataTypes.TINYINT,
     user_fk: DataTypes.INTEGER,
     auth_user_fk: DataTypes.INTEGER
   }, {
