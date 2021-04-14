@@ -149,7 +149,7 @@ exports.reject = async (req, res, next) => {
                     },
                 });
             res.status(200).send({
-                message: 'Constancia de devolución Rechazada.'
+                message: 'Constancia de Prestamo Rechazada.'
             });
         } else {
             const aprovar = await db.borrowing.update({ auth_state: 'Denegado',auth_user_fk: auth_user_fk},
@@ -159,7 +159,7 @@ exports.reject = async (req, res, next) => {
                     },
                 });
             res.status(200).send({
-                message: 'Constancia de devolución Rechazada.'
+                message: 'Constancia de Prestamo Rechazada.'
             });
         }
     } catch (error) {
