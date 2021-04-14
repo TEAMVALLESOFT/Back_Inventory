@@ -2,15 +2,20 @@ const db = require('../models');
 
 exports.create = async (req, res, next) => {
     try {
-        const borrowing = await db.borrowing.findOne({ where: { id: req.body.borrowing_fk } });
-        if (borrowing.auth_state == 'Aprobada') {
+        const borrowing = await db.borrowing.findOne({ where: { id: req.body.borrowing_fk}});
+        if (borrowing.auth_state == 'Aprobada' && borrowing.has_returning == 0) {
             const registro = await db.returning.create({
                 auth_state: 'Pendiente',
                 state: req.body.state,
                 borrowing_fk : borrowing.id,
-                auth_user_fk: req.body.auth_user_fk  
+                auth_user_fk: req.body.auth_user_fk,
+                obs: req.body.obs
             });
             if(registro){
+                const update = await db.borrowing.update({has_returning : 1},
+                {
+                    where:{id: borrowing.id}
+                })
                 res.status(200).send({
                     message: 'La solicitud de devolución se ha creado con éxito.'
                 });
@@ -18,7 +23,8 @@ exports.create = async (req, res, next) => {
         }
         else{
             res.status(409).send({
-                message: 'No es posible realizar una solicitud de devolución a un préstamo que no ha sido Aprobado.'
+                message: 
+                'No es posible realizar una solicitud de devolución a un préstamo que no ha sido Aprobado o ya tiene una constancia de devolución .'
             });
         }
     } catch (error) {
@@ -93,7 +99,7 @@ exports.approve = async(req, res, next) =>{
             });
     } catch (error) {
         res.status(500).send({
-            message: '¿Error en el servidor!.'
+            message: '¡Error en el servidor!.'
         });
         next(error);
     }
@@ -112,7 +118,7 @@ exports.reject = async(req, res, next) =>{
             });
     } catch (error) {
         res.status(500).send({
-            message: ']¡Error en el servidor!.'
+            message: '¡Error en el servidor!.'
         });
         next(error);
     }
