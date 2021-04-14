@@ -64,31 +64,14 @@ exports.create = async (req, res, next) => {
 
 exports.list = async (req, res, next) => {
 
-    try {
-
-        const { id } = req.query;
-        if (id) {
-            const BorroI = await db.borrowing.findAndCountAll({
-                where: { id: id }
+  try {
+        const borro = await db.borrowing.findAndCountAll()
+        if (borro.count != 0) {
+            res.status(200).json(borro);
+        } else {
+            res.status(204).send({
+                message: 'No hay registros en el sistema.'
             });
-            if (BorroI.count != 0) {
-                res.status(200).json(BorroI);
-            } else {
-
-                res.status(204).send({
-                    message: 'No hay registros en el sistema.'
-                });
-            }
-        }
-        else {
-            const borro = await db.borrowing.findAndCountAll()
-            if (borro.count != 0) {
-                res.status(200).json(borro);
-            } else {
-                res.status(204).send({
-                    message: 'No hay registros en el sistema.'
-                });
-            }
         }
     } catch (err) {
         console.log(err)
