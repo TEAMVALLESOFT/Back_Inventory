@@ -24,8 +24,19 @@ module.exports = {
       obs: {
         type: Sequelize.STRING
       },
+       has_returning: {
+        allowNull: false,
+        type: Sequelize.TINYINT
+      },
       user_fk: {
         allowNull: false,
+        type: Sequelize.INTEGER,
+        references: { // User belongsTo Company 1:1
+          model: 'users',
+          key: 'id'
+        }
+      },
+      auth_user_fk: {
         type: Sequelize.INTEGER,
         references: { // User belongsTo Company 1:1
           model: 'users',
@@ -36,6 +47,7 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE
       },
+     
       updatedAt: {
         allowNull: false,
         type: Sequelize.DATE

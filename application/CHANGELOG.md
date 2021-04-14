@@ -1,3 +1,7 @@
+## [1.15.0](https://github.com/TEAMVALLESOFT/Back_Inventory/pull/35) (2021-04-13)
+**Modified**
+- [VALLESOFT-204] Added service to approve,reject and list borrowing.
+
 ## [1.14.1](https://github.com/TEAMVALLESOFT/Back_Inventory/pull/35) (2021-04-13)
 **Modified**
 - fix service to create article.
