@@ -22,6 +22,7 @@ exports.create = async (req, res, next) => {
                         auth_state: "Pendiente",
                         pick_up_date: req.body.pick_up_date,
                         return_date: req.body.return_date,
+                        has_returning: req.body.has_returning,
                     });
                     const borrowing = await db.borrowing.findOne({ where: { id: registro.id } });
                     if (borrowing != null) {
