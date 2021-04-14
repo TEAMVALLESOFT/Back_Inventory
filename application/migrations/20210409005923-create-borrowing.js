@@ -24,6 +24,10 @@ module.exports = {
       obs: {
         type: Sequelize.STRING
       },
+       has_returning: {
+        allowNull: false,
+        type: Sequelize.TINYINT
+      },
       user_fk: {
         allowNull: false,
         type: Sequelize.INTEGER,
@@ -43,6 +47,7 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE
       },
+     
       updatedAt: {
         allowNull: false,
         type: Sequelize.DATE
