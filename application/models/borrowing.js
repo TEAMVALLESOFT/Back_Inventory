@@ -11,8 +11,8 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      this.belongsTo(models.user,{foreignKey: 'user_fk', as: 'Usuario asociado'});
-      this.belongsTo(models.user,{foreignKey: 'auth_user_fk', as: 'Usuario que Autoriza'});
+      this.belongsTo(models.user,{foreignKey: 'user_fk', as: 'Asociado'});
+      this.belongsTo(models.user,{foreignKey: 'auth_user_fk', as: 'Autoriza'});
     }
   };
   borrowing.init({
