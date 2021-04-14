@@ -1,3 +1,8 @@
+## [1.16.0](https://github.com/TEAMVALLESOFT/Back_Inventory/pull/37) (2021-04-14)
+**Modified**
+- fix error in articles and returnings.
+- [VALLESOFT-30] Added service to list by borrowing_id and has_returning
+
 ## [1.15.0](https://github.com/TEAMVALLESOFT/Back_Inventory/pull/35) (2021-04-13)
 **Modified**
 - [VALLESOFT-204] Added service to approve,reject and list borrowing.
