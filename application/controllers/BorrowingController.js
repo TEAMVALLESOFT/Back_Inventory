@@ -66,7 +66,7 @@ exports.create = async (req, res, next) => {
 exports.list = async (req, res, next) => {
 
   try {
-        const borro = await db.borrowing.findAndCountAll()
+        const borro = await db.borrowing.findAndCountAll();
         if (borro.count != 0) {
             res.status(200).json(borro);
         } else {
