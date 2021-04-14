@@ -104,28 +104,18 @@ exports.approve = async (req, res, next) => {
     try {
         const { obs } = req.body;
         const { auth_user_fk } = req.body;
-        if (obs) {
 
-            const aprovar = await db.borrowing.update({ auth_state: 'Aprobado', obs: obs,auth_user_fk: auth_user_fk},
-                {
-                    where: {
-                        id: req.body.borrowing_id
-                    },
-                });
-            res.status(200).send({
-                message: 'Constancia de devolución Aprobada.'
+
+        const aprovar = await db.borrowing.update({ auth_state: 'Aprobado', obs: obs, auth_user_fk: auth_user_fk },
+            {
+                where: {
+                    id: req.body.borrowing_id
+                },
             });
-        } else {
-            const aprovar = await db.borrowing.update({ auth_state: 'Aprobado',auth_user_fk: auth_user_fk},
-                {
-                    where: {
-                        id: req.body.borrowing_id
-                    },
-                });
-            res.status(200).send({
-                message: 'Constancia de devolución Aprobada.'
-            });
-        }
+        res.status(200).send({
+            message: 'Constancia de Prestamo Aprobada.'
+        });
+
     } catch (error) {
         res.status(500).send({
             message: 'Error en el servidor!'
@@ -138,31 +128,21 @@ exports.approve = async (req, res, next) => {
 exports.reject = async (req, res, next) => {
 
 
-    try {
+   try {
         const { obs } = req.body;
         const { auth_user_fk } = req.body;
-        if (obs) {
-            const aprovar = await db.borrowing.update({ auth_state: 'Denegado', obs: obs,auth_user_fk: auth_user_fk },
-                {
-                    where: {
-                        id: req.body.borrowing_id
-                    },
-                });
-            res.status(200).send({
-                message: 'Constancia de Prestamo Rechazada.'
+
+        const aprovar = await db.borrowing.update({ auth_state: 'Denegado', obs: obs, auth_user_fk: auth_user_fk },
+            {
+                where: {
+                    id: req.body.borrowing_id
+                },
             });
-        } else {
-            const aprovar = await db.borrowing.update({ auth_state: 'Denegado',auth_user_fk: auth_user_fk},
-                {
-                    where: {
-                        id: req.body.borrowing_id
-                    },
-                });
-            res.status(200).send({
-                message: 'Constancia de Prestamo Rechazada.'
-            });
-        }
-    } catch (error) {
+        res.status(200).send({
+            message: 'Constancia de Prestamo Rechazada.'
+        });
+
+    }  catch (error) {
         res.status(500).send({
             message: 'Error en el servidor!'
         });
