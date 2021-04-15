@@ -66,10 +66,10 @@ exports.create = async (req, res, next) => {
 exports.list = async (req, res, next) => {
     try {
         const { has_returning } = req.query;
-        if (has_returning == 'false'){
+        if (has_returning == 'false') {
             const borro = await db.borrowing.findAndCountAll({
-                where: { 
-                    has_returning: 0, 
+                where: {
+                    has_returning: 0,
                     auth_state: 'Aprobada'
                 },
                 include: [{
@@ -77,7 +77,7 @@ exports.list = async (req, res, next) => {
                     attributes: ['user_name', 'email'],
                     required: true,
                     as: 'Asociado'
-                },{
+                }, {
                     model: db.user,
                     attributes: ['user_name', 'email'],
                     as: 'Autoriza'
@@ -120,12 +120,12 @@ exports.list = async (req, res, next) => {
     }
 };
 
-exports.detail = async (req, res, next) =>{
+exports.detail = async (req, res, next) => {
     const { borrowing_id } = req.query;
     try {
 
         const borro = await db.borrowing.findAndCountAll({
-            where: { id: borrowing_id},
+            where: { id: borrowing_id },
             include: [{
                 model: db.user,
                 attributes: ['user_name', 'email'],
@@ -138,17 +138,51 @@ exports.detail = async (req, res, next) =>{
             }]
 
         });
+
+        const array = [];
+        var datareal = [];
+        for (var i = 0; i < borro.count; i++) {
+            console.log("a");
+            var element = await db.reservation.findAndCountAll({
+                attributes: ['id', 'borrowing_fk', 'article_fk'],
+                where: { borrowing_fk: borro.rows[i].id },
+                include: {
+                    model: db.article,
+                    attributes: ['label', 'id', 'warehouse_fk', 'article_type_fk'],
+                    as: 'Articulo',
+                   
+                    
+                    include: [{
+                        model: db.article_type,
+                        attributes: ['classif', 'article_type_name'],
+                        as: 'Tipo',
+                    },
+                    {
+                        model: db.warehouse,
+                        attributes: ['warehouse_name'],
+                        as:'Bodega',
+                        
+                    }]
+                }
+            });
+            array.push(element);
+            datareal.push(Object.assign(borro.rows[i].dataValues, { article_list: array[i].rows }));
+        }
+
+
         if (borro.count != 0) {
-            res.status(200).json(borro);
+            res.status(200).json(datareal);
         } else {
             res.status(204).send({
                 message: 'No hay registros en el sistema.'
             });
         }
-        
+
     } catch (error) {
-        console.log(err)
-        return res.status(500).json({ error: '¡Error en el servidor!.' });
+        res.status(500).send({
+            message: '¡Error en el servidor!.'
+        });
+        next(error);
     }
 }
 

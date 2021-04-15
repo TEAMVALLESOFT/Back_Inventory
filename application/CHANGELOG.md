@@ -1,3 +1,7 @@
+## [1.16.2](https://github.com/TEAMVALLESOFT/Back_Inventory/pull/39) (2021-04-15)
+**Modified**
+- fix error in borrowing list for id
+
 ## [1.16.1](https://github.com/TEAMVALLESOFT/Back_Inventory/pull/38) (2021-04-15)
 **Modified**
 - fix error in borrowing list
