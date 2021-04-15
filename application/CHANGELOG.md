@@ -1,3 +1,7 @@
+## [1.16.1](https://github.com/TEAMVALLESOFT/Back_Inventory/pull/38) (2021-04-15)
+**Modified**
+- fix error in borrowing list
+
 ## [1.16.0](https://github.com/TEAMVALLESOFT/Back_Inventory/pull/37) (2021-04-14)
 **Modified**
 - fix error in articles and returnings.

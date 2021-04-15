@@ -68,17 +68,18 @@ exports.list = async (req, res, next) => {
         const { has_returning } = req.query;
         if (has_returning == 'false'){
             const borro = await db.borrowing.findAndCountAll({
-                where: { has_returning: 1},
+                where: { 
+                    has_returning: 0, 
+                    auth_state: 'Aprobada'
+                },
                 include: [{
                     model: db.user,
                     attributes: ['user_name', 'email'],
                     required: true,
                     as: 'Asociado'
-                },
-                {
+                },{
                     model: db.user,
                     attributes: ['user_name', 'email'],
-                    required: true,
                     as: 'Autoriza'
                 }]
             });
