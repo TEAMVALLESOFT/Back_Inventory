@@ -22,6 +22,7 @@ exports.create = async (req, res, next) => {
                         auth_state: "Pendiente",
                         pick_up_date: req.body.pick_up_date,
                         return_date: req.body.return_date,
+                        obs: req.body.obs,
                         has_returning: 0,
                     });
                     const borrowing = await db.borrowing.findOne({ where: { id: registro.id } });
@@ -36,7 +37,6 @@ exports.create = async (req, res, next) => {
                     res.status(200).send({
                         message: 'El Préstamo fue creado con éxito.'
                     });
-
                 }
                 else {
                     res.status(404).send({
@@ -64,15 +64,53 @@ exports.create = async (req, res, next) => {
 };
 
 exports.list = async (req, res, next) => {
-
-  try {
-        const borro = await db.borrowing.findAndCountAll();
-        if (borro.count != 0) {
-            res.status(200).json(borro);
-        } else {
-            res.status(204).send({
-                message: 'No hay registros en el sistema.'
+    try {
+        const { has_returning } = req.query;
+        if (has_returning == 'false'){
+            const borro = await db.borrowing.findAndCountAll({
+                where: { has_returning: 1},
+                include: [{
+                    model: db.user,
+                    attributes: ['user_name', 'email'],
+                    required: true,
+                    as: 'Asociado'
+                },
+                {
+                    model: db.user,
+                    attributes: ['user_name', 'email'],
+                    required: true,
+                    as: 'Autoriza'
+                }]
             });
+            if (borro.count != 0) {
+                res.status(200).json(borro);
+            } else {
+                res.status(404).send({
+                    message: 'No hay registros en el sistema.'
+                });
+            }
+        }
+        else {
+            const borro = await db.borrowing.findAndCountAll({
+                include: [{
+                    model: db.user,
+                    attributes: ['user_name', 'email'],
+                    required: true,
+                    as: 'Asociado'
+                }, {
+                    model: db.user,
+                    attributes: ['user_name', 'email'],
+                    as: 'Autoriza'
+                }]
+
+            });
+            if (borro.count != 0) {
+                res.status(200).json(borro);
+            } else {
+                res.status(204).send({
+                    message: 'No hay registros en el sistema.'
+                });
+            }
         }
     } catch (err) {
         console.log(err)
@@ -81,25 +119,59 @@ exports.list = async (req, res, next) => {
     }
 };
 
+exports.detail = async (req, res, next) =>{
+    const { borrowing_id } = req.query;
+    try {
+
+        const borro = await db.borrowing.findAndCountAll({
+            where: { id: borrowing_id},
+            include: [{
+                model: db.user,
+                attributes: ['user_name', 'email'],
+                required: true,
+                as: 'Asociado'
+            }, {
+                model: db.user,
+                attributes: ['user_name', 'email'],
+                as: 'Autoriza'
+            }]
+
+        });
+        if (borro.count != 0) {
+            res.status(200).json(borro);
+        } else {
+            res.status(204).send({
+                message: 'No hay registros en el sistema.'
+            });
+        }
+        
+    } catch (error) {
+        console.log(err)
+        return res.status(500).json({ error: '¡Error en el servidor!.' });
+    }
+}
 
 exports.approve = async (req, res, next) => {
-
 
     try {
         const { obs } = req.body;
         const { auth_user_fk } = req.body;
 
-
-        const aprovar = await db.borrowing.update({ auth_state: 'Aprobado', obs: obs, auth_user_fk: auth_user_fk },
-            {
-                where: {
-                    id: req.body.borrowing_id
-                },
+        if (auth_user_fk) {
+            const aprovar = await db.borrowing.update({ auth_state: 'Aprobada', obs: obs, auth_user_fk: auth_user_fk },
+                {
+                    where: {
+                        id: req.body.borrowing_id
+                    },
+                });
+            res.status(200).send({
+                message: 'Constancia de Préstamo Aprobada.'
             });
-        res.status(200).send({
-            message: 'Constancia de Prestamo Aprobada.'
-        });
-
+        } else {
+            res.status(204).send({
+                message: 'No es posible Aprobar la Constancia de Préstamo.'
+            });
+        }
     } catch (error) {
         res.status(500).send({
             message: 'Error en el servidor!'
@@ -111,8 +183,7 @@ exports.approve = async (req, res, next) => {
 
 exports.reject = async (req, res, next) => {
 
-
-   try {
+    try {
         const { obs } = req.body;
         const { auth_user_fk } = req.body;
 
@@ -123,10 +194,10 @@ exports.reject = async (req, res, next) => {
                 },
             });
         res.status(200).send({
-            message: 'Constancia de Prestamo Rechazada.'
+            message: 'Constancia de Préstamo Rechazada.'
         });
 
-    }  catch (error) {
+    } catch (error) {
         res.status(500).send({
             message: 'Error en el servidor!'
         });

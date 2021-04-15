@@ -35,7 +35,7 @@ exports.create = async (req, res, next) => {
                     }
                     if (ican === array.length) {
                         var count = await db.article.count({}) + 1;
-                        var article_label = parent.classif.substring(0, 3) + req.body.branch.substring(0, 3) + '_' + count;
+                        var article_label = parent.classif.substring(0, 3) +'-'+ parent.article_type_name.substring(0, 3) + '-' + req.body.branch.substring(0, 3) + '-' + count;
                         const registro = await db.article.create({
                             label: article_label,
                             available_state: req.body.available_state,
@@ -51,7 +51,7 @@ exports.create = async (req, res, next) => {
                                 const type = await db.article_type.findOne({ where: { id: array[i].article_type_fk } });
                                 if (type.is_parent === 0) {
                                     var count = await db.article.count({}) + 1;
-                                    var articlelabel = type.classif.substring(0, 3) + array[i].branch.substring(0, 3) + '_' + count;
+                                    var articlelabel = type.classif.substring(0, 3) +'-'+ type.article_type_name.substring(0, 3) + '-' + array[i].branch.substring(0, 3) + '-' + count;
                                     const registro = await db.article.create({
                                         label: articlelabel,
                                         available_state: array[i].available_state,
