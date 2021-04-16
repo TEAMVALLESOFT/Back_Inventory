@@ -1,3 +1,7 @@
+## [1.4.0](https://github.com/TEAMVALLESOFT/Back_Inventory/pull/40) (2021-04-16)
+**Added**
+- [VALLESOFT-204] Added documentation about borrowing and article type
+
 ## [1.3.0](https://github.com/TEAMVALLESOFT/Back_Inventory/pull/34) (2021-04-13)
 **Added**
 - [VALLESOFT-204] Added documentation to list, approve and reject returning. 
