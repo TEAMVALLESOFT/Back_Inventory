@@ -1,3 +1,7 @@
+## [1.17.2](https://github.com/TEAMVALLESOFT/Back_Inventory/pull/43) (2021-04-18)
+**Modified**
+- fix error in server.
+
 ## [1.17.1](https://github.com/TEAMVALLESOFT/Back_Inventory/pull/42) (2021-04-17)
 **Modified**
 - fix error in returning approve,reject and detail.

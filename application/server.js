@@ -31,15 +31,14 @@ if (fs.existsSync(crPath) && fs.existsSync(pkPath)) {
     https.createServer({
         cert: fs.readFileSync(crPath),
         key: fs.readFileSync(pkPath)
-    }),
-        app.listen(app.get('port'), (error) => {
+    },app).listen(app.get('port'), (error) => {
             if (!error) {
                 console.log('Running encrypted');
                 console.log(`Server on port http://localhost:${app.get('port')}`);
             } else {
                 console.log(error);
             }
-        });
+    });
 }
 else {
     app.listen(app.get('portdevelopment'), (error) => {
