@@ -29,9 +29,6 @@ exports.create = async (req, res, next) => {
                         if (type.is_parent === 0) {
                             ican += 1;
                         }
-                        else {
-                            ican = ican;
-                        }
                     }
                     if (ican === array.length) {
                         var count = await db.article.count({}) + 1;

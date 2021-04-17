@@ -4,6 +4,7 @@ const ReturningController = require('../../controllers/ReturningController');
 router.post('/create',ReturningController.create);
 
 router.get('/list', ReturningController.list);
+router.get('/id', ReturningController.detail);
 
 router.put('/approved', ReturningController.approve);
 router.put('/rejected', ReturningController.reject);
