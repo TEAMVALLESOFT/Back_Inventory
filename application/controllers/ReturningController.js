@@ -152,7 +152,7 @@ exports.approve = async(req, res, next) =>{
         const registro = await db.returning.update({auth_state: 'Aprobado'},
             {
                 where: {
-                    id: req.body.id
+                    id: req.body.returning_id
                 },
             });
             res.status(200).send({
@@ -171,10 +171,10 @@ exports.reject = async(req, res, next) =>{
         const registro = await db.returning.update({auth_state: 'Denegado'},
             {
                 where: {
-                    id: req.body.id
+                    id: req.body.returning_id
                 },
             });
-            res.status(404).send({
+            res.status(200).send({
                 message: 'Constancia de devolución Denegada.'
             });
     } catch (error) {
