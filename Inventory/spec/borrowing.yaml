@@ -1,3 +1,5 @@
+openapi: "3.0.0"
+
 info:
   title: "Inventory"
   description: "This is the API specification of Inventory"
@@ -111,7 +113,7 @@ paths:
                   message: 
                     type: "string"
                     example: "¡Error en el servidor!."
-                    
+
   /borrowing/detail:
     get:
       tags:
@@ -127,7 +129,7 @@ paths:
               schema:
                 type: "object"
                 properties:
-                $ref: "#/components2/schemas/borrowings" 
+                $ref: "#/components/schemas/borrowing_detail" 
         404:
           description: "bad request"
           content:
@@ -148,7 +150,7 @@ paths:
                   message: 
                     type: "string"
                     example: "¡Error en el servidor!."
-                    
+
   /borrowing/approved:
     put:
       tags:
@@ -198,7 +200,7 @@ paths:
                   message: 
                     type: "string"
                     example: "¡Error en el servidor!."
-                    
+
   /borrowing/rejected:
     put:
       tags:
@@ -248,10 +250,10 @@ paths:
                   message: 
                     type: "string"
                     example: "¡Error en el servidor!."
-                    
-                    
-                    
-                    
+
+
+
+
 
 
 components:
@@ -305,20 +307,14 @@ components:
                     email:
                         type: "string"
                         example: "natalia@uao.edu.co"
-                    
-                  
-                  
-                
-                
-components2:
- schemas:
-   borrowings:
+
+   borrowing_detail:
     type: "object"
     required:
       - "name"
     properties:
       data:
-        type: "JSON/Object"
+        type: "object"
         items:
           type: "object"
           properties:
@@ -343,13 +339,13 @@ components2:
             auth_user_fk: 
                 type: "integer"
                 example: "2"
-                
+
             Asociado:
                 type: "object"
                 properties:
                     user_name:
                        type: "string"
-                       example: "Luis
+                       example: "Luis"
                     email:
                        type: "string"
                        example: "luis.suescum@uao.edu.co"
@@ -391,4 +387,4 @@ components2:
                 properties:
                     warehouse_name:
                         type: "string"
-                        example: "Bodega de don Guarin"
+                        example: "Bodega de don Guarin" 
