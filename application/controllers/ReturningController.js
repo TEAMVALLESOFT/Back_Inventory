@@ -86,6 +86,67 @@ exports.list = async (req,res,next)=>{
     }
 }
 
+exports.detail = async (req, res, next) => {
+    const { returning_id } = req.query;
+    try {
+
+        const retu = await db.returning.findAndCountAll({
+            where: { id: returning_id },
+            include: [{
+                model : db.borrowing,
+                attributes: [ 'auth_state','pick_up_date','return_date'],
+                required: true,
+                as: 'solicitud',
+            },{                
+                model : db.user,
+                attributes: ['user_name', 'email', 'phone'],
+                required: true,
+                as: 'evaluador',  
+            }]
+        });
+
+        const array = [];
+        var datareal = [];
+        for(var i=0; i<retu.count;i++){
+            var element = await db.reservation.findAndCountAll({
+                attributes: ['id', 'borrowing_fk', 'article_fk'],
+                where:{ borrowing_fk: retu.rows[i].borrowing_fk},
+                include:{
+                    model : db.article,
+                    attributes: [ 'label','id','article_type_fk'],
+                    as: 'Articulo',
+                    include: [{
+                        model: db.article_type,
+                        attributes: ['classif', 'article_type_name'],
+                        as: 'Tipo',
+                    },
+                    {
+                        model: db.warehouse,
+                        attributes: ['warehouse_name'],
+                        as:'Bodega',
+                        
+                    }]
+                }
+            });
+            array.push(element);      
+            datareal.push(Object.assign(retu.rows[i].dataValues, {article_list:array[i].rows}));   
+        }
+        if (retu.count != 0) {
+            res.status(200).json(datareal);
+        } else {
+            res.status(204).send({
+                message: 'No hay registros en el sistema.'
+            });
+        }
+
+    } catch (error) {
+        res.status(500).send({
+            message: '¡Error en el servidor!.'
+        });
+        next(error);
+    }
+}
+
 exports.approve = async(req, res, next) =>{
     try {
         const registro = await db.returning.update({auth_state: 'Aprobado'},

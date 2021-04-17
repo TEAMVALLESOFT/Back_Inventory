@@ -12,9 +12,6 @@ exports.create = async (req, res, next) => {
                     if (type) {
                         ican += 1;
                     }
-                    else {
-                        ican = ican;
-                    }
                 }
                 if (ican === array.length) {
                     const registro = await db.borrowing.create({
