@@ -1,3 +1,8 @@
+## [1.17.0](https://github.com/TEAMVALLESOFT/Back_Inventory/pull/41) (2021-04-16)
+**Modified**
+- fix error in borrowing and article.
+- [VALLESOFT-219] Added list returning by id
+
 ## [1.16.2](https://github.com/TEAMVALLESOFT/Back_Inventory/pull/39) (2021-04-15)
 **Modified**
 - fix error in borrowing list for id
