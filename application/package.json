@@ -1,6 +1,6 @@
 {
   "name": "back_inventory",
-  "version": "1.17.2",
+  "version": "1.18.0",
   "description": "Proyecto informatico (backend) inventario del grupo Scouts Centinelas 113",
   "main": "server.js",
   "scripts": {
@@ -22,10 +22,13 @@
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
     "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "https": "^1.0.0",
     "jsonwebtoken": "^8.5.1",
     "mysql2": "^2.2.5",
+    "nodemailer": "^6.5.0",
+    "nodemailer-express-handlebars": "^4.0.0",
     "sequelize": "^6.6.2",
     "sequelize-cli": "^6.2.0"
   },

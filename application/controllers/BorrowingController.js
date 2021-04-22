@@ -1,4 +1,5 @@
 const db = require('../models');
+const mailService = require('../services/mail');
 
 exports.create = async (req, res, next) => {
     try {
@@ -31,6 +32,14 @@ exports.create = async (req, res, next) => {
                             });
                         }
                     }
+
+                    const type_request = "borrowing";
+                    const action_type = 'creation';
+                    const auth = true;
+                    mailService.enviar(User, type_request, action_type, borrowing.id, auth);
+
+
+
                     res.status(200).send({
                         message: 'El Préstamo fue creado con éxito.'
                     });
@@ -147,8 +156,8 @@ exports.detail = async (req, res, next) => {
                     model: db.article,
                     attributes: ['label', 'id', 'warehouse_fk', 'article_type_fk'],
                     as: 'Articulo',
-                   
-                    
+
+
                     include: [{
                         model: db.article_type,
                         attributes: ['classif', 'article_type_name'],
@@ -157,8 +166,8 @@ exports.detail = async (req, res, next) => {
                     {
                         model: db.warehouse,
                         attributes: ['warehouse_name'],
-                        as:'Bodega',
-                        
+                        as: 'Bodega',
+
                     }]
                 }
             });
@@ -196,6 +205,18 @@ exports.approve = async (req, res, next) => {
                         id: req.body.borrowing_id
                     },
                 });
+
+            const prestamo = await db.borrowing.findOne({
+                where: { id: req.body.borrowing_id }
+            });
+
+            const user = await db.user.findOne({ where: { id: prestamo.user_fk } });
+
+
+            const type_request = "borrowing";
+            const action_type = 'auth';
+            const auth = true;
+            mailService.enviar(user, type_request, action_type, prestamo.id, auth);
             res.status(200).send({
                 message: 'Constancia de Préstamo Aprobada.'
             });
@@ -225,6 +246,18 @@ exports.reject = async (req, res, next) => {
                     id: req.body.borrowing_id
                 },
             });
+
+        const prestamo = await db.borrowing.findOne({
+            where: { id: req.body.borrowing_id }
+        });
+
+        const user = await db.user.findOne({ where: { id: prestamo.user_fk } });
+
+
+        const type_request = "borrowing";
+        const action_type = 'auth';
+        const auth = false;
+        mailService.enviar(user, type_request, action_type, prestamo.id, auth);
         res.status(200).send({
             message: 'Constancia de Préstamo Rechazada.'
         });
