@@ -1,3 +1,7 @@
+## [1.18.0](https://github.com/TEAMVALLESOFT/Back_Inventory/pull/44) (2021-04-22)
+**Modified/Added**
+- [VALLESOFT-49-50-51] Added user notification service 
+
 ## [1.17.2](https://github.com/TEAMVALLESOFT/Back_Inventory/pull/43) (2021-04-18)
 **Modified**
 - fix error in server.
