@@ -1,4 +1,13 @@
-## [2.0](https://github.com/TEAMVALLESOFT/Back_Inventory/pull/45) (2021-05-5)
+
+## [2.1.1](https://github.com/TEAMVALLESOFT/Back_Inventory/pull/47) (2021-05-06)
+**Modified**
+- fix token service to include rol in token.
+
+## [2.1.0](https://github.com/TEAMVALLESOFT/Back_Inventory/pull/46) (2021-05-05)
+**Modified/Added**
+- [VALLESOFT-226] Creation of rol and added service to modified user information.
+
+## [2.0.0](https://github.com/TEAMVALLESOFT/Back_Inventory/pull/45) (2021-05-05)
 **Modified/Added**
 - [VALLESOFT-49-50-51] Creation of the list users service, list unique user and the role field was added in the users table
 
