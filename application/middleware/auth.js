@@ -13,7 +13,7 @@ module.exports = {
                 next();
             } else {
                 return res.status(403).send({
-                    message: 'Usuario no autorizado' + validateResponse
+                    message: 'Usuario no autorizado'
                 });
             }
         }
