@@ -28,7 +28,7 @@ module.exports = {
             id: Usuario.id,
             user_name: Usuario.user_name,
             email: Usuario.email,
-            //rol : Usuario.rol,   
+            rol : Usuario.rol,   
         }, 'UnaFraseSecretaParaCodificar',{
             expiresIn: 86400,
         });
