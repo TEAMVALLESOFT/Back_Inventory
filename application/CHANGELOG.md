@@ -1,3 +1,7 @@
+## [2.0](https://github.com/TEAMVALLESOFT/Back_Inventory/pull/45) (2021-05-5)
+**Modified/Added**
+- [VALLESOFT-49-50-51] Creation of the list users service, list unique user and the role field was added in the users table
+
 ## [1.18.0](https://github.com/TEAMVALLESOFT/Back_Inventory/pull/44) (2021-04-22)
 **Modified/Added**
 - [VALLESOFT-49-50-51] Added user notification service 
