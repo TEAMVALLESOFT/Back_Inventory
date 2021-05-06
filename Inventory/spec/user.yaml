@@ -24,7 +24,7 @@ paths:
             schema: 
               type: object
               properties: 
-                name:
+                user_name:
                   type: "string"
                   example: "test"
                 email: 
@@ -39,6 +39,9 @@ paths:
                 password:
                   type: "string"
                   example: "password"
+                rol:
+                  type: "string"
+                  example: "jefe de rama"
       responses:
         200:
           description: "successful operation"
@@ -91,6 +94,74 @@ paths:
                 password:
                   type: "string"
                   example: "password"
+      responses:
+        200:
+          description: "successful operation"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties: 
+                  message: 
+                    type: "string"
+                    example: "Bienvenido."
+                  token:
+                    type: "string"
+                    example: "yJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywidXNlcl9uYW1lIjoianVhbmRhdmlkIiwiZW1haWwiOiJHb256YWxlekBleGFtcGxlLmNvbSIsImlhdCI6MTYxODA4MDc3NSwiZXhwIjoxNjE4MTY3MTc1fQ.xfkujqKrw4DYiIBWpKDCXAzJ5EynB11XzFwDx5BwrUg"
+                  $ref: "#/components/schemas/userlogin"            
+        401:
+          description: "bad request"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties: 
+                  message: 
+                    type: "string"
+                    example: "Error en el ususario o contraseña."
+        404: 
+          description: "bad request"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties: 
+                  message: 
+                    type: "string"
+                    example: "Error en el ususario o contraseña."
+  user/update:
+    post:
+      tags:
+        - "User"
+      summary: "Update User"
+      description: "We can update user information with this service"
+      operationId: "update"
+      requestBody:
+        description: "user information"
+        required: true
+        content: 
+          application/json: 
+            schema: 
+              type: object
+              properties:
+                id:
+                  type: "integer"
+                  format: "int64" 
+                user_name:
+                  type: "string"
+                  example: "test"
+                email: 
+                  type: "string"
+                  example: "test@example.com"
+                branch:
+                  type: "string"
+                  example: "Lobato"
+                phone:
+                  type: "string"
+                  example: "310999999"
+                rol:
+                  type: "string"
+                  example: "jefe de rama"
       responses:
         200:
           description: "successful operation"

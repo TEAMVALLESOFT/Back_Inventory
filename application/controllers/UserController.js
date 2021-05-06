@@ -14,14 +14,14 @@ exports.add = async (req, res, next) => {
         }
         else {
             req.body.password = bcrypt.hashSync(req.body.password, 10);
-            if( req.body.rol == "jefe de rama" || req.body.rol == "jefe de bodega" || req.body.rol == "admin"){
-               
+            if (req.body.rol == "jefe de rama" || req.body.rol == "jefe de bodega" || req.body.rol == "admin") {
+
                 const Usuario = await db.user.create({
                     email: req.body.email,
                     user_name: req.body.user_name,
                     branch: req.body.branch,
                     phone: req.body.phone,
-                    password : req.body.password,
+                    password: req.body.password,
                     rol: req.body.rol,
                 });
 
@@ -29,14 +29,14 @@ exports.add = async (req, res, next) => {
                     message: 'Usuario creado con éxito.'
                 });
             }
-            else{
+            else {
 
                 res.status(409).send({
                     message: 'Rol no permitido'
                 })
             }
 
-           
+
         }
     } catch (error) {
         res.status(500).send({
@@ -111,7 +111,7 @@ exports.detail = async (req, res, next) => {
             where: { id: user_id },
         });
 
-        
+
         if (oneuser.count != 0) {
             res.status(200).json(oneuser);
         } else {
@@ -127,3 +127,29 @@ exports.detail = async (req, res, next) => {
         next(error);
     }
 }
+
+exports.update = async (req, res, next) => {
+    try {
+        const registro = await db.user.update({
+            user_name: req.body.user_name,
+            branch: req.body.branch,
+            phone: req.body.phone,
+            email: req.body.email,
+            rol: req.body.rol
+        },
+            {
+                where: {
+                    id: req.body.id
+                },
+            });
+            
+        res.status(200).send({
+            message: 'Usuario modificado con éxito.'
+        });
+    } catch (error) {
+        res.status(500).send({
+            message: '¡Error en el servidor!.'
+        });
+        next(error);
+    }
+};

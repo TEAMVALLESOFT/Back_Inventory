@@ -27,7 +27,7 @@ module.exports = {
       rol: {
         type: Sequelize.STRING,
         allownull:false,
-        defaultValue: 'jefe de bodega, jefe de rama, admin'
+        defaultValue: 'jefe de bodega, jefe de rama, administrador'
       },
       createdAt: {
         allowNull: false,
