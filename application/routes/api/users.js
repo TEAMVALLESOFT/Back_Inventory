@@ -1,9 +1,13 @@
 const router = require('express').Router();
 const UserController = require('../../controllers/UserController');
+const auth = require('../../middleware/auth');
 
-router.post('/create', UserController.add);
+router.post('/create',auth.verifyAdmin, UserController.add);
 router.post('/login', UserController.login);
-router.get('/list', UserController.list);
+
+router.put('/update', UserController.update);
+
+router.get('/list', auth.verifyAdmin, UserController.list);
 router.get('/detail', UserController.detail);
 
 module.exports = router;
