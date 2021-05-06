@@ -172,12 +172,8 @@ paths:
                 properties: 
                   message: 
                     type: "string"
-                    example: "Bienvenido."
-                  token:
-                    type: "string"
-                    example: "yJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywidXNlcl9uYW1lIjoianVhbmRhdmlkIiwiZW1haWwiOiJHb256YWxlekBleGFtcGxlLmNvbSIsImlhdCI6MTYxODA4MDc3NSwiZXhwIjoxNjE4MTY3MTc1fQ.xfkujqKrw4DYiIBWpKDCXAzJ5EynB11XzFwDx5BwrUg"
-                  $ref: "#/components/schemas/userlogin"            
-        401:
+                    example: "Usuario modificado con éxito."        
+        500: 
           description: "bad request"
           content:
             application/json:
@@ -186,17 +182,7 @@ paths:
                 properties: 
                   message: 
                     type: "string"
-                    example: "Error en el ususario o contraseña."
-        404: 
-          description: "bad request"
-          content:
-            application/json:
-              schema:
-                type: "object"
-                properties: 
-                  message: 
-                    type: "string"
-                    example: "Error en el ususario o contraseña."
+                    example: "¡Error en el servidor!."
 components:
   schemas:
     userlogin:
