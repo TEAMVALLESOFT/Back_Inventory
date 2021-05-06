@@ -14,8 +14,11 @@ exports.add = async (req, res, next) => {
         }
         else {
             req.body.password = bcrypt.hashSync(req.body.password, 10);
-            if (req.body.rol == "jefe de rama" || req.body.rol == "jefe de bodega" || req.body.rol == "admin") {
-
+            if (
+                req.body.rol == "jefe de rama" || 
+                req.body.rol == "jefe de bodega" || 
+                req.body.rol == "admininistrador"
+            ) {
                 const Usuario = await db.user.create({
                     email: req.body.email,
                     user_name: req.body.user_name,
