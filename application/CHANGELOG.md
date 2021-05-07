@@ -1,4 +1,8 @@
 
+## [2.2.0](https://github.com/TEAMVALLESOFT/Back_Inventory/pull/49) (2021-05-07)
+**Modified/Added**
+- Services related to password change
+
 ## [2.1.1](https://github.com/TEAMVALLESOFT/Back_Inventory/pull/47) (2021-05-06)
 **Modified**
 - fix token service to include rol in token.
