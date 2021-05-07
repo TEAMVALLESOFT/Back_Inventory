@@ -15,8 +15,8 @@ exports.enviar = async (user, request_type, action_type, token, next) => {
         let transporter = nodemailer.createTransport({
             service: 'gmail',
             auth: {
-                user: "suescumperea@gmail.com",
-                pass: "lapola2012"
+                user: process.env.EMAIL,
+                pass: process.env.PASSWORD
             }
         });
 
