@@ -29,6 +29,9 @@ module.exports = {
         allownull:false,
         defaultValue: 'jefe de bodega, jefe de rama, administrador'
       },
+      token: {
+        type: Sequelize.STRING,
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
