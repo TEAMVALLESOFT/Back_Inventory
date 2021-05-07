@@ -7,7 +7,7 @@ exports.create = async(req,res,next)=>{
             const registro = await db.warehouse.create({warehouse_name: req.body.warehouse_name,
                 desc: req.body.desc, address: req.body.address, user_fk: Usuario.id});
                 res.status(200).send({
-                    error: 'Bodega creada con éxito.'
+                    message: 'Bodega creada con éxito.'
                 });       
         }else{
             res.status(404).send({
