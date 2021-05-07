@@ -4,7 +4,7 @@ module.exports = {
     verifyAdmin: async (req, res, next) => {
         if (!req.headers.token) {
             return res.status(404).send({
-                message: 'Token no encontrado'
+                error: 'Token no encontrado.'
             });
         }
         else {
@@ -13,7 +13,7 @@ module.exports = {
                 next();
             } else {
                 return res.status(403).send({
-                    message: 'Usuario no autorizado'
+                    error: 'Usuario no autorizado.'
                 });
             }
         }
@@ -21,7 +21,7 @@ module.exports = {
     verifyWarehouseManager: async (req, res, next) => {
         if (!req.headers.token) {
             return res.status(404).send({
-                message: 'Token no encontrado'
+                error: 'Token no encontrado.'
             });
         }
         else {
@@ -30,7 +30,7 @@ module.exports = {
                 next();
             } else {
                 return res.status(403).send({
-                    message: 'Usuario no autorizado.'
+                    error: 'Usuario no autorizado.'
                 });
             }
         }

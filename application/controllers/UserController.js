@@ -9,7 +9,7 @@ exports.add = async (req, res, next) => {
         if (Usuario) {
 
             res.status(409).send({
-                message: 'El correo electrónico ya se encuentra en uso.'
+                error: 'El correo electrónico ya se encuentra en uso.'
             })
         }
         else {
@@ -35,7 +35,7 @@ exports.add = async (req, res, next) => {
             else {
 
                 res.status(409).send({
-                    message: 'Rol no permitido'
+                    error: 'Rol no permitido'
                 })
             }
 
@@ -43,7 +43,7 @@ exports.add = async (req, res, next) => {
         }
     } catch (error) {
         res.status(500).send({
-            message: '¡Error en el servidor!.'
+            error: '¡Error en el servidor!'
         })
         next(error);
     }
@@ -82,7 +82,7 @@ exports.login = async (req, res, next) => {
         }
     } catch (error) {
         res.status(500).send({
-            message: '¡Error en el servidor!.'
+            error: '¡Error en el servidor!'
         })
         next(error);
     }
@@ -96,13 +96,12 @@ exports.list = async (req, res, next) => {
             res.status(200).json(userss);
         } else {
             res.status(204).send({
-                message: 'No hay registros en el sistema.'
+                error: 'No hay registros en el sistema.'
             });
         }
 
     } catch (err) {
-        console.log(err)
-        return res.status(500).json({ error: '¡Error en el servidor!.' });
+        return res.status(500).json({ error: '¡Error en el servidor!' });
 
     }
 };
@@ -120,13 +119,13 @@ exports.detail = async (req, res, next) => {
             res.status(200).json(oneuser);
         } else {
             res.status(204).send({
-                message: 'No hay registros en el sistema.'
+                error: 'No hay registros en el sistema.'
             });
         }
 
     } catch (error) {
         res.status(500).send({
-            message: '¡Error en el servidor!.'
+            error: '¡Error en el servidor!'
         });
         next(error);
     }
@@ -152,7 +151,7 @@ exports.update = async (req, res, next) => {
         });
     } catch (error) {
         res.status(500).send({
-            message: '¡Error en el servidor!.'
+            error: '¡Error en el servidor!'
         });
         next(error);
     }

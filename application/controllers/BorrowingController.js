@@ -38,32 +38,30 @@ exports.create = async (req, res, next) => {
                     const auth = true;
                     mailService.enviar(User, type_request, action_type, borrowing.id, auth);
 
-
-
                     res.status(200).send({
-                        message: 'El Préstamo fue creado con éxito.'
+                        message: 'El préstamo fue creado con éxito.'
                     });
                 }
                 else {
                     res.status(404).send({
-                        message: 'No seleccionó un artículo existente.'
+                        error: 'No seleccionó un artículo existente.'
                     });
                 }
             }
             else {
                 res.status(404).send({
-                    message: 'No se encontraron los artículos.'
+                    error: 'No se encontraron los artículos.'
                 });
             }
         }
         else {
             res.status(404).send({
-                message: 'No se encontro el usuario.'
+                error: 'No se encontro el usuario.'
             });
         }
     } catch (error) {
         res.status(500).send({
-            message: '¡Error en el servidor.!'
+            error: '¡Error en el servidor!'
         });
         next(error);
     }
@@ -93,7 +91,7 @@ exports.list = async (req, res, next) => {
                 res.status(200).json(borro);
             } else {
                 res.status(404).send({
-                    message: 'No hay registros en el sistema.'
+                    error: 'No hay registros en el sistema.'
                 });
             }
         }
@@ -115,13 +113,12 @@ exports.list = async (req, res, next) => {
                 res.status(200).json(borro);
             } else {
                 res.status(204).send({
-                    message: 'No hay registros en el sistema.'
+                    error: 'No hay registros en el sistema.'
                 });
             }
         }
     } catch (err) {
-        console.log(err)
-        return res.status(500).json({ error: '¡Error en el servidor!.' });
+        return res.status(500).json({ error: '¡Error en el servidor!' });
 
     }
 };
@@ -180,20 +177,19 @@ exports.detail = async (req, res, next) => {
             res.status(200).json(datareal);
         } else {
             res.status(204).send({
-                message: 'No hay registros en el sistema.'
+                error: 'No hay registros en el sistema.'
             });
         }
 
     } catch (error) {
         res.status(500).send({
-            message: '¡Error en el servidor!.'
+            error: '¡Error en el servidor!'
         });
         next(error);
     }
 }
 
 exports.approve = async (req, res, next) => {
-
     try {
         const { obs } = req.body;
         const { auth_user_fk } = req.body;
@@ -212,27 +208,25 @@ exports.approve = async (req, res, next) => {
 
             const user = await db.user.findOne({ where: { id: prestamo.user_fk } });
 
-
             const type_request = "borrowing";
             const action_type = 'auth';
             const auth = true;
             mailService.enviar(user, type_request, action_type, prestamo.id, auth);
             res.status(200).send({
-                message: 'Constancia de Préstamo Aprobada.'
+                message: 'Constancia de préstamo aprobada.'
             });
         } else {
             res.status(204).send({
-                message: 'No es posible Aprobar la Constancia de Préstamo.'
+                error: 'No es posible aprobar la constancia de préstamo.'
             });
         }
     } catch (error) {
         res.status(500).send({
-            message: 'Error en el servidor!'
+            error: '¡Error en el servidor!'
         });
         next(error);
     }
 };
-
 
 exports.reject = async (req, res, next) => {
 
@@ -259,12 +253,12 @@ exports.reject = async (req, res, next) => {
         const auth = false;
         mailService.enviar(user, type_request, action_type, prestamo.id, auth);
         res.status(200).send({
-            message: 'Constancia de Préstamo Rechazada.'
+            message: 'Constancia de préstamo rechazada.'
         });
 
     } catch (error) {
         res.status(500).send({
-            message: 'Error en el servidor!'
+            error: '¡Error en el servidor!'
         });
         next(error);
     }

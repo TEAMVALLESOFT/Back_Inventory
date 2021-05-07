@@ -6,7 +6,7 @@ exports.add = async (req, res, next) => {
         const typee = await db.article_type.findOne({ where: { article_type_name: req.body.article_type_name } });
         if (typee) {
             res.status(409).send({
-                message: 'El tipo de artículo deseado ya existe.'
+                error: 'El tipo de artículo deseado ya existe.'
             })
         }
         else {
@@ -19,7 +19,7 @@ exports.add = async (req, res, next) => {
         }
     } catch (error) {
         res.status(500).send({
-            message: 'Error en el servidor.'
+            error: '¡Error en el servidor!'
         })
         next(error);
     }
@@ -38,7 +38,7 @@ exports.list = async (req, res, next) => {
             } else {
 
                 res.status(204).send({
-                    message: 'No hay registros en el sistema.'
+                    error: 'No hay registros en el sistema.'
                 });
             }
         }
@@ -48,7 +48,7 @@ exports.list = async (req, res, next) => {
                 res.status(200).json(type);
             } else {
                 res.status(204).send({
-                    message: 'No hay registros en el sistema.'
+                    error: 'No hay registros en el sistema.'
                 });
             }
         }
