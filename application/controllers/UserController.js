@@ -1,7 +1,8 @@
 const bcrypt = require('bcryptjs');
 const db = require('../models');
 const tokenServices = require('../services/token');
-
+const jwt = require('jsonwebtoken');
+const mailService = require('../services/EmailRecover');
 
 exports.add = async (req, res, next) => {
     try {
@@ -17,7 +18,7 @@ exports.add = async (req, res, next) => {
             if (
                 req.body.rol == "jefe de rama" || 
                 req.body.rol == "jefe de bodega" || 
-                req.body.rol == "admininistrador"
+                req.body.rol == "administrador"
             ) {
                 const Usuario = await db.user.create({
                     email: req.body.email,
@@ -156,3 +157,144 @@ exports.update = async (req, res, next) => {
         next(error);
     }
 };
+exports.recoverp = async (req, res, next) => {
+    try {
+
+        
+        
+        const { user_email } = req.query;
+        if (user_email) {
+            
+            const Usuario = await db.user.findOne({ where: { email: user_email } });
+            if (Usuario) {
+                
+
+                const randomstring = Math.random().toString(36).slice(-8);
+                const token = randomstring;
+                const type_request = "New Password";
+                const action_type = 'auth';
+                const Usuario1 = await db.user.update({ token: token },
+                    {
+                        where: {
+                            email: user_email
+                        },
+                    });
+
+
+                mailService.enviar(Usuario, type_request, action_type, token);
+
+                setTimeout(() => {
+                    resetToken(user_email)
+                }, 600000);
+
+
+            } else {
+                res.status(404).json({
+                    error: 'No Existe Usuario en el sistema!'
+                })
+            }
+        } else {
+            res.status(404).json({
+                error: 'Ingrese un Email Valido!'
+            })
+        }
+    } catch (error) {
+        res.status(500).send({
+            message: '¡Error en el servidor!.'
+        })
+        next(error);
+    }
+};
+
+exports.tokenv = async (req, res, next) => {
+    try {
+        const { token_user } = req.query;
+        if (token_user) {
+            
+            const Usuario = await db.user.findOne({ where: { token: token_user } });
+            if (Usuario) {
+
+
+
+                res.status(200).json({id:Usuario.id, name:Usuario.user_name});
+
+            } else {
+                res.status(404).json({
+                    error: 'No Existe Usuario en el sistema!'
+                })
+            }
+        } else {
+            res.status(404).json({
+                error: 'Ingrese un Token Valido!'
+            })
+        }
+    } catch (error) {
+        res.status(500).send({
+            message: '¡Error en el servidor!.'
+        })
+        next(error);
+    }
+};
+
+exports.passwd = async (req, res, next) => {
+    try {
+        const { user_id } = req.query;
+        const {passwd_new} = req.query;
+        const {passwd_compare} = req.query;
+
+        if (user_id) {
+            
+            const Usuario = await db.user.findOne({ where: { id: user_id } });
+            if (Usuario) {
+
+                if(passwd_new == passwd_compare){
+                    const passwd_new2 = bcrypt.hashSync(passwd_new, 10);
+                    const Usuario2 = db.user.update({password : passwd_new2},{
+                        where:{
+                            id: user_id
+                        },
+                    });
+                    res.status(200).json({
+                        message: 'Cambio Exitoso'
+                    });
+                }else{
+                    res.status(404).json({
+                        error: 'No coinciden las claves!'
+                    })
+                }
+                
+            } else {
+                res.status(404).json({
+                    error: 'No Existe Usuario en el sistema!'
+                })
+            }
+        } else {
+            res.status(404).json({
+                error: 'Ingrese un id valido!'
+            })
+        }
+    } catch (error) {
+        res.status(500).send({
+            message: '¡Error en el servidor!.'
+        })
+        next(error);
+    }
+};
+
+
+
+function resetToken(user_email) {
+    try {
+        const Usuario1 =  db.user.update({ token: "" },
+            {
+                where: {
+                    email: user_email
+                },
+            });
+    } catch (error) {
+        res.status(500).send({
+            message: '¡Error en el servidor!.'
+        })
+        next(error);
+    }
+}
