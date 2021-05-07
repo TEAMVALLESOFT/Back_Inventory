@@ -71,13 +71,13 @@ exports.login = async (req, res, next) => {
             } else {
                 //error en la autenticación
                 res.status(401).json({
-                    error: 'Error en el ususario o contraseña'
+                    error: 'Error en el usuario o contraseña.'
                 })
             }
         } else {
             //error en la autenticación
             res.status(404).json({
-                error: 'Error en el ususario o contraseña'
+                error: 'Error en el usuario o contraseña.'
             })
         }
     } catch (error) {

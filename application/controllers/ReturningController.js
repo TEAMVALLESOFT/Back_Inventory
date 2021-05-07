@@ -76,7 +76,7 @@ exports.list = async (req, res, next) => {
             res.status(200).json(datareal);
         } else {
             res.status(404).send({
-                error: 'No hay constancias de devolución en el sistema.'
+                error: 'No hay registros en el sistema.'
             });
         }
     } catch (error) {

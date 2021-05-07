@@ -127,7 +127,7 @@ exports.list = async (req, res, next) => {
                 res.status(200).json(registro);
             } else {
                 res.status(404).send({
-                    error: 'No hay artículos con esas caracteristicas en el sistema.'
+                    error: 'No hay registros en el sistema.'
                 });
             }
         }
@@ -157,7 +157,7 @@ exports.list = async (req, res, next) => {
                     res.status(200).json(registro);
                 } else {
                     res.status(404).send({
-                        error: 'No hay artículos con esas caracteristicas en el sistema.'
+                        error: 'No hay registros en el sistema.'
                     });
                 }
             }
@@ -187,7 +187,7 @@ exports.list = async (req, res, next) => {
                         res.status(200).json(registro);
                     } else {
                         res.status(404).send({
-                            error: 'No hay artículos con esas caracteristicas en el sistema.'
+                            error: 'No hay registros en el sistema.'
                         });
                     }
                 }
@@ -217,7 +217,7 @@ exports.list = async (req, res, next) => {
                             res.status(200).json(registro);
                         } else {
                             res.status(404).send({
-                                error: 'No hay artículos con esas caracteristicas en el sistema.'
+                                error: 'No hay registros en el sistema.'
                             });
                         }
                     }
@@ -242,7 +242,7 @@ exports.list = async (req, res, next) => {
                             res.status(200).json(registro);
                         } else {
                             res.status(404).send({
-                                error: 'No hay artículos en el sistema.'
+                                error: 'No hay registros en el sistema.'
                             });
                         }
                     }

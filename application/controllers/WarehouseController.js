@@ -37,7 +37,7 @@ exports.list = async(req, res, next)=>{
             res.status(200).json(bodegas);
         }else{
             res.status(404).send({
-                error: 'No hay bodegas en el sistema.'
+                error: 'No hay registros en el sistema.'
             });
         }    
     } catch (error) {

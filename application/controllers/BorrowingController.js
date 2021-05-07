@@ -50,13 +50,13 @@ exports.create = async (req, res, next) => {
             }
             else {
                 res.status(404).send({
-                    error: 'No se encontraron los artículos.'
+                    error: 'No hay registros en el sistema.'
                 });
             }
         }
         else {
             res.status(404).send({
-                error: 'No se encontro el usuario.'
+                error: 'No hay registros en el sistema.'
             });
         }
     } catch (error) {

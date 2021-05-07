@@ -54,7 +54,7 @@ exports.list = async (req, res, next) => {
         }
     } catch (err) {
         console.log(err)
-        return res.status(500).json({ error: '¡Error en el servidor!.' });
+        return res.status(500).json({ error: '¡Error en el servidor!' });
 
     }
 };
