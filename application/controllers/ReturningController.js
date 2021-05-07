@@ -135,7 +135,7 @@ exports.detail = async (req, res, next) => {
         if (retu.count != 0) {
             res.status(200).json(datareal);
         } else {
-            res.status(204).send({
+            res.status(404).send({
                 error: 'No hay registros en el sistema.'
             });
         }

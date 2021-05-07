@@ -112,7 +112,7 @@ exports.list = async (req, res, next) => {
             if (borro.count != 0) {
                 res.status(200).json(borro);
             } else {
-                res.status(204).send({
+                res.status(404).send({
                     error: 'No hay registros en el sistema.'
                 });
             }
@@ -176,7 +176,7 @@ exports.detail = async (req, res, next) => {
         if (borro.count != 0) {
             res.status(200).json(datareal);
         } else {
-            res.status(204).send({
+            res.status(404).send({
                 error: 'No hay registros en el sistema.'
             });
         }
@@ -216,7 +216,7 @@ exports.approve = async (req, res, next) => {
                 message: 'Constancia de préstamo aprobada.'
             });
         } else {
-            res.status(204).send({
+            res.status(404).send({
                 error: 'No es posible aprobar la constancia de préstamo.'
             });
         }

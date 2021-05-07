@@ -95,7 +95,7 @@ exports.list = async (req, res, next) => {
         if (userss.count != 0) {
             res.status(200).json(userss);
         } else {
-            res.status(204).send({
+            res.status(404).send({
                 error: 'No hay registros en el sistema.'
             });
         }
@@ -118,7 +118,7 @@ exports.detail = async (req, res, next) => {
         if (oneuser.count != 0) {
             res.status(200).json(oneuser);
         } else {
-            res.status(204).send({
+            res.status(404).send({
                 error: 'No hay registros en el sistema.'
             });
         }
