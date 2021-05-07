@@ -7,16 +7,16 @@ exports.create = async(req,res,next)=>{
             const registro = await db.warehouse.create({warehouse_name: req.body.warehouse_name,
                 desc: req.body.desc, address: req.body.address, user_fk: Usuario.id});
                 res.status(200).send({
-                    message: 'Bodega creada con exito.'
+                    error: 'Bodega creada con éxito.'
                 });       
         }else{
             res.status(404).send({
-                message: 'El correo electronico no se encuentra registrado.'
+                error: 'El correo electrónico no se encuentra registrado.'
             });
         }
     } catch (error) {
         res.status(500).send({
-            message: '¡Error en el servidor!.'
+            error: '¡Error en el servidor!'
         });
         next(error);
     }
@@ -37,12 +37,12 @@ exports.list = async(req, res, next)=>{
             res.status(200).json(bodegas);
         }else{
             res.status(404).send({
-                message: 'No hay bodegas en el sistema.'
+                error: 'No hay registros en el sistema.'
             });
         }    
     } catch (error) {
         res.status(500).send({
-            message: '¡Error en el servidor!.'
+            error: '¡Error en el servidor!'
         });
         next(error);    
     }

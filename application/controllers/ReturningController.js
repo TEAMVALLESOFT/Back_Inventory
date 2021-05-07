@@ -24,13 +24,13 @@ exports.create = async (req, res, next) => {
         }
         else {
             res.status(409).send({
-                message:
-                    'No es posible realizar una solicitud de devolución a un préstamo que no ha sido Aprobado o ya tiene una constancia de devolución .'
+                error:
+                    'No es posible realizar una solicitud de devolución a un préstamo que no ha sido aprobado o ya tiene una constancia de devolución.'
             });
         }
     } catch (error) {
         res.status(500).send({
-            message: '¡Error en el servidor.!'
+            error: '¡Error en el servidor!'
         });
         next(error);
     }
@@ -76,12 +76,12 @@ exports.list = async (req, res, next) => {
             res.status(200).json(datareal);
         } else {
             res.status(404).send({
-                message: 'No hay constancias de devolución en el sistema.'
+                error: 'No hay registros en el sistema.'
             });
         }
     } catch (error) {
         res.status(500).send({
-            message: '¡Error en el servidor!.'
+            error: '¡Error en el servidor!'
         });
         next(error);
     }
@@ -135,14 +135,14 @@ exports.detail = async (req, res, next) => {
         if (retu.count != 0) {
             res.status(200).json(datareal);
         } else {
-            res.status(204).send({
-                message: 'No hay registros en el sistema.'
+            res.status(404).send({
+                error: 'No hay registros en el sistema.'
             });
         }
 
     } catch (error) {
         res.status(500).send({
-            message: '¡Error en el servidor!.'
+            error: '¡Error en el servidor!'
         });
         next(error);
     }
@@ -183,14 +183,14 @@ exports.approve = async (req, res, next) => {
             mailService.enviar(user, type_request, action_type, solicitud.id,auth);
 
             res.status(200).json({
-                message: 'Constancia de devolución Aprobada.'
+                message: 'Constancia de devolución aprobada.'
             });
         }
 
       
     } catch (error) {
         res.status(500).send({
-            message: '¡Error en el servidor!.'
+            error: '¡Error en el servidor!'
         });
         next(error);
     }
@@ -219,11 +219,11 @@ exports.reject = async (req, res, next) => {
             mailService.enviar(user, type_request, action_type, solicitud.id,auth);
 
         res.status(200).send({
-            message: 'Constancia de devolución Denegada.'
+            message: 'Constancia de devolución denegada.'
         });
     } catch (error) {
         res.status(500).send({
-            message: '¡Error en el servidor!.'
+            error: '¡Error en el servidor!'
         });
         next(error);
     }

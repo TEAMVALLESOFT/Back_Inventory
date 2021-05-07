@@ -44,7 +44,7 @@ exports.enviar = async (user, request_type, action_type, id, auth, next) => {
         });
     } catch (error) {
         res.status(500).send({
-            message: '¡Error en el servidor!.'
+            error: '¡Error en el servidor!'
         });
         next(error);
     }

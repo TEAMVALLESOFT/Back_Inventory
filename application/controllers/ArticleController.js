@@ -70,25 +70,25 @@ exports.create = async (req, res, next) => {
 
                     else {
                         res.status(404).send({
-                            message: 'No es posible realizar la creación y asociación del artículo.'
+                            error: 'No es posible realizar la creación y asociación del artículo.'
                         });
                     }
                 }
                 else {
                     res.status(404).send({
-                        message: 'No es posible realizar la asociación del artículo.'
+                        error: 'No es posible realizar la asociación del artículo.'
                     });
                 }
             }
         }
         else {
             res.status(404).send({
-                message: 'No se encontro el tipo de artículo.'
+                error: 'No se encontro el tipo de artículo.'
             });
         }
     } catch (error) {
         res.status(500).send({
-            message: '¡Error en el servidor.!'
+            error: '¡Error en el servidor!'
         });
         next(error);
     }
@@ -127,7 +127,7 @@ exports.list = async (req, res, next) => {
                 res.status(200).json(registro);
             } else {
                 res.status(404).send({
-                    message: 'No hay artículos con esas caracteristicas en el sistema.'
+                    error: 'No hay registros en el sistema.'
                 });
             }
         }
@@ -157,7 +157,7 @@ exports.list = async (req, res, next) => {
                     res.status(200).json(registro);
                 } else {
                     res.status(404).send({
-                        message: 'No hay artículos con esas caracteristicas en el sistema.'
+                        error: 'No hay registros en el sistema.'
                     });
                 }
             }
@@ -187,7 +187,7 @@ exports.list = async (req, res, next) => {
                         res.status(200).json(registro);
                     } else {
                         res.status(404).send({
-                            message: 'No hay artículos con esas caracteristicas en el sistema.'
+                            error: 'No hay registros en el sistema.'
                         });
                     }
                 }
@@ -217,7 +217,7 @@ exports.list = async (req, res, next) => {
                             res.status(200).json(registro);
                         } else {
                             res.status(404).send({
-                                message: 'No hay artículos con esas caracteristicas en el sistema.'
+                                error: 'No hay registros en el sistema.'
                             });
                         }
                     }
@@ -242,7 +242,7 @@ exports.list = async (req, res, next) => {
                             res.status(200).json(registro);
                         } else {
                             res.status(404).send({
-                                message: 'No hay artículos en el sistema.'
+                                error: 'No hay registros en el sistema.'
                             });
                         }
                     }
@@ -251,7 +251,7 @@ exports.list = async (req, res, next) => {
         }
     } catch (error) {
         res.status(500).send({
-            message: '¡Error en el servidor.!'
+            error: '¡Error en el servidor!'
         })
         next(error);
     }
