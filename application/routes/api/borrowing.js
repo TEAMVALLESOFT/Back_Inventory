@@ -10,4 +10,6 @@ router.get('/id',BorrowingController.detail);
 router.put('/approved', auth.verifyWarehouseManager,BorrowingController.approve);
 router.put('/rejected',auth.verifyWarehouseManager,BorrowingController.reject);
 
+router.put('/update',BorrowingController.update);
+
 module.exports = router;
