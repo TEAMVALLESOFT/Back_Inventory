@@ -263,3 +263,29 @@ exports.reject = async (req, res, next) => {
         next(error);
     }
 };
+
+
+exports.update = async (req, res, next) => {
+    try {
+        const updateBorrowing = await db.borrowing.update({
+            pick_up_date: req.body.pick_up_date,
+            return_date: req.body.return_date,
+            obs: req.body.obs,
+            has_returning: 0
+        },
+            {
+                where: {
+                    id: req.body.id
+                },
+            });
+            
+        res.status(200).send({
+            message: 'Prestamo modificado con éxito.'
+        });
+    } catch (error) {
+        res.status(500).send({
+            error: '¡Error en el servidor!'
+        });
+        next(error);
+    }
+};

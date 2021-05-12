@@ -1,6 +1,6 @@
 {
   "name": "back_inventory",
-  "version": "2.2.0",
+  "version": "2.3.0",
   "description": "Proyecto informatico (backend) inventario del grupo Scouts Centinelas 113",
   "main": "server.js",
   "scripts": {

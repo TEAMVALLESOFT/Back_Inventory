@@ -162,7 +162,7 @@ exports.recoverp = async (req, res, next) => {
 
         
         
-        const { user_email } = req.query;
+        const { user_email } = req.body;
         if (user_email) {
             
             const Usuario = await db.user.findOne({ where: { email: user_email } });
@@ -187,6 +187,10 @@ exports.recoverp = async (req, res, next) => {
                     resetToken(user_email)
                 }, 600000);
 
+                res.status(200).json({
+                    message: 'Envio exitoso'
+                });
+
 
             } else {
                 res.status(404).json({
@@ -208,7 +212,7 @@ exports.recoverp = async (req, res, next) => {
 
 exports.tokenv = async (req, res, next) => {
     try {
-        const { token_user } = req.query;
+        const { token_user } = req.body;
         if (token_user) {
             
             const Usuario = await db.user.findOne({ where: { token: token_user } });
@@ -238,9 +242,11 @@ exports.tokenv = async (req, res, next) => {
 
 exports.passwd = async (req, res, next) => {
     try {
-        const { user_id } = req.query;
-        const {passwd_new} = req.query;
-        const {passwd_compare} = req.query;
+        const { user_id } = req.body.user_id;
+        const {passwd_new} = req.body.passwd_new;
+        const {passwd_compare} = req.body.passwd_compare;
+
+        
 
         if (user_id) {
             
