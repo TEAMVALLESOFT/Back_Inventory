@@ -156,7 +156,7 @@ exports.approve = async (req, res, next) => {
                     id: req.body.returning_id,
                 },
             });
-        
+
         //permite cambiar el estado de los articulos del prestamo a disponible.
         if (registro == 1) {
             const solicitud = await db.returning.findOne({
@@ -176,18 +176,18 @@ exports.approve = async (req, res, next) => {
             }
 
             //envia el correo electronico al usuario -> Solicitud aprobada.
-            const user = await db.user.findOne({where:{id : prestamo.user_fk}});
+            const user = await db.user.findOne({ where: { id: prestamo.user_fk } });
             const type_request = "returning";
             const action_type = 'auth';
             const auth = true;
-            mailService.enviar(user, type_request, action_type, solicitud.id,auth);
+            mailService.enviar(user, type_request, action_type, solicitud.id, auth);
 
             res.status(200).json({
                 message: 'Constancia de devolución aprobada.'
             });
         }
 
-      
+
     } catch (error) {
         res.status(500).send({
             error: '¡Error en el servidor!'
@@ -205,22 +205,63 @@ exports.reject = async (req, res, next) => {
                 },
             });
 
-            const solicitud = await db.returning.findOne({
-                where: { id: req.body.returning_id }
-            });
-            const prestamo = await db.borrowing.findOne({
-                where: { id: solicitud.borrowing_fk }
-            });
-            const user = await db.user.findOne({where:{id : prestamo.user_fk}});
+        const solicitud = await db.returning.findOne({
+            where: { id: req.body.returning_id }
+        });
+        const prestamo = await db.borrowing.findOne({
+            where: { id: solicitud.borrowing_fk }
+        });
+        const user = await db.user.findOne({ where: { id: prestamo.user_fk } });
 
-            const type_request = "returning";
-            const action_type = 'auth';
-            const auth = false;
-            mailService.enviar(user, type_request, action_type, solicitud.id,auth);
+        const type_request = "returning";
+        const action_type = 'auth';
+        const auth = false;
+        mailService.enviar(user, type_request, action_type, solicitud.id, auth);
 
         res.status(200).send({
             message: 'Constancia de devolución denegada.'
         });
+    } catch (error) {
+        res.status(500).send({
+            error: '¡Error en el servidor!'
+        });
+        next(error);
+    }
+};
+
+exports.update = async (req, res, next) => {
+
+    try {
+
+        const id = req.body.returning_id;
+        const returning = await db.returning.findOne({ where: { id: id } });
+
+        if (returning) {
+
+            const returning = await db.returning.update({
+                auth_state: req.body.auth_state,
+                state: req.body.state,
+                obs: req.body.obs
+            },
+                {
+                    where: {
+                        id: id
+                    },
+                });
+
+            res.status(200).send({
+                message: 'Constancia de devolución modificada con éxito.'
+            });
+
+
+        } else {
+
+            res.status(404).send({
+                message: 'No existe dicha constancia.'
+            });
+
+
+        }
     } catch (error) {
         res.status(500).send({
             error: '¡Error en el servidor!'

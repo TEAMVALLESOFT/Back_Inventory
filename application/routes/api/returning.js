@@ -10,4 +10,6 @@ router.get('/id', ReturningController.detail);
 router.put('/approved', auth.verifyWarehouseManager,ReturningController.approve);
 router.put('/rejected', auth.verifyWarehouseManager, ReturningController.reject);
 
+router.put('/update', ReturningController.update);
+
 module.exports = router;
