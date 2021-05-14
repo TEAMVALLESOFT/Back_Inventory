@@ -1,3 +1,21 @@
+## [2.5.0](https://github.com/TEAMVALLESOFT/Back_Inventory/pull/55) (2021-05-14)
+**Added**
+- [VALLESOFT-238] Added service to update articles.
+- fix approve request to update available_state in articles. 
+
+## [2.4.0](https://github.com/TEAMVALLESOFT/Back_Inventory/pull/54) (2021-05-14)
+**Added**
+- [VALLESOFT-243] Added update borrowing services.
+
+## [2.3.0](https://github.com/TEAMVALLESOFT/Back_Inventory/pull/53) (2021-05-12)
+**Added/Modified**
+- [VALLESOFT-239] Added update borrowing services. 
+- fix change password service.
+
+## [2.2.0](https://github.com/TEAMVALLESOFT/Back_Inventory/pull/49-50) (2021-05-07)
+**Added/Modified**
+- [VALLESOFT-225] Added change password services. 
+- fix message and errors.
 
 ## [2.1.1](https://github.com/TEAMVALLESOFT/Back_Inventory/pull/47) (2021-05-06)
 **Modified**
