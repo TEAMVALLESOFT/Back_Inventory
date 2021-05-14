@@ -257,3 +257,69 @@ exports.list = async (req, res, next) => {
     }
 };
 
+exports.update = async (req, res, next) => {
+    try {
+        const article = await db.article.findOne({ where: { id: req.body.id } });
+        if (article != null) {
+            const parent = await db.article_type.findOne({ where: { id: article.article_type_fk } });
+            const register = await db.article.update({
+                available_state: req.body.available_state,
+                physical_state: req.body.physical_state,
+                branch: req.body.branch,
+                warehouse_fk: req.body.warehouse_fk,
+                obs: req.body.obs
+            },{
+                where:{ id: article.id }
+            });
+            const article_updated = await db.article.findOne({where: {id: article.id}});
+            const article_label = parent.classif.substring(0, 3) + '-' +
+                parent.article_type_name.substring(0, 3) + '-' +
+                article_updated.branch.substring(0, 3) + '-' + article_updated.id;
+
+            const register_label = await db.article.update({
+                label: article_label.toUpperCase()
+            },{
+                where: {id: article_updated.id}
+            });
+
+            if(parent.is_parent === 0){
+                res.status(200).send({
+                    message: 'El artículo fue modificado con éxito.'
+                });
+            }else{
+                const asociate = await db.article.findAll({where: { article_fk: article.id}});
+                for (var i = 0; i < asociate.length; i++) {
+                    const parent_asociate = await db.article_type.findOne({ 
+                        where: { id: asociate[i].article_type_fk } 
+                    });
+                    const register_asociate = await db.article.update({
+                        available_state: article_updated.available_state,
+                        branch: article_updated.branch,
+                        warehouse_fk: article_updated.warehouse_fk,
+                    },{
+                        where:{ id: asociate[i].id }
+                    });
+                    const asociate_updated = await db.article.findOne({ where: {id: asociate[i].id}});
+                    const asociate_label = parent_asociate.classif.substring(0,3)+ '-' +
+                    parent_asociate.article_type_name.substring(0,3)+ '-' +
+                    asociate_updated.branch.substring(0,3)+ '-' + asociate_updated.id;
+
+                    const register_label_asociate = await db.article.update({
+                        label: asociate_label.toUpperCase()
+                    },{
+                        where: {id: asociate_updated.id}
+                    });
+
+                    res.status(200).send({
+                        message: 'El artículo y sus articulos asociados fueron modificados con éxito.'
+                    });
+                }    
+            }
+        }
+    } catch (error) {
+        res.status(500).send({
+            error: '¡Error en el servidor!'
+        })
+        next(error);
+    }
+};

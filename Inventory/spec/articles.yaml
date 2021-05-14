@@ -157,6 +157,70 @@ paths:
                   message: 
                     type: "string"
                     example: "¡Error en el servidor!."
+    /article/update:
+    put:
+      tags:
+        - "article"
+      summary: "update articles"
+      description: "We can update articles with this service"
+      operationId: "update"
+      requestBody:
+        description: "article information"
+        required: true
+        content: 
+          application/json: 
+            schema: 
+              type: object
+              properties: 
+                id:
+                  type: "integer"
+                  example: 1
+                available_state:
+                  type: "string"
+                  example: "disponible"
+                physical_state: 
+                  type: "string"
+                  example: "funcional"
+                branch:
+                  type: "string"
+                  example: "Lobato"
+                obs:
+                  type: "string"
+                  example: null
+                warehouse_fk: 
+                  type: "integer"
+                  example: 2
+      responses:
+        200:
+          description: "successful operation"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties:
+                  message: 
+                    type: "string"
+                    example: "El artículo y sus articulos asociados fueron modificados con éxito."
+        200:
+          description: "successful operation"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties:
+                  message: 
+                    type: "string"
+                    example: "El artículo fue modificado con éxito."      
+        500: 
+          description: "bad request"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties: 
+                  message: 
+                    type: "string"
+                    example: "¡Error en el servidor!."
 components:
   schemas:
     article:
