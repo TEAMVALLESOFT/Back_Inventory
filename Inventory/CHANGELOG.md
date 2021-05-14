@@ -1,3 +1,7 @@
+## [1.5.0](https://github.com/TEAMVALLESOFT/Back_Inventory/pull/55) (2021-05-14)
+**Added**
+- [VALLESOFT-238] Added documentation about article update.
+
 ## [1.4.0](https://github.com/TEAMVALLESOFT/Back_Inventory/pull/40) (2021-04-16)
 **Added**
 - [VALLESOFT-204] Added documentation about borrowing and article type

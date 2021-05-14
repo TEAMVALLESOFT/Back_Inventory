@@ -195,13 +195,30 @@ exports.approve = async (req, res, next) => {
         const { auth_user_fk } = req.body;
 
         if (auth_user_fk) {
-            const aprovar = await db.borrowing.update({ auth_state: 'Aprobada', obs: obs, auth_user_fk: auth_user_fk },
+            const register = await db.borrowing.update({ auth_state: 'Aprobada', obs: obs, auth_user_fk: auth_user_fk },
                 {
                     where: {
                         id: req.body.borrowing_id
                     },
                 });
 
+            //update available_state articles.
+            if (register == 1) {
+                const borrowing = await db.returning.findOne({
+                    where: { id: req.body.borrowing_id }
+                });
+                const element = await db.reservation.findAndCountAll({
+                    where: { borrowing_fk: borrowing.id }
+                });
+                for (var i = 0; i < element.count; i++) {
+                    const data = await db.article.update({ available_state: 'prestado' },
+                        {
+                            where: { id: element.rows[i].article_fk }
+                        });
+                }
+            } 
+
+            //send confirmation borrowing email.
             const prestamo = await db.borrowing.findOne({
                 where: { id: req.body.borrowing_id }
             });
@@ -278,7 +295,7 @@ exports.update = async (req, res, next) => {
                     id: req.body.id
                 },
             });
-            
+
         res.status(200).send({
             message: 'Prestamo modificado con éxito.'
         });
