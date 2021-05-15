@@ -6,7 +6,8 @@ router.post('/create',auth.verifyWarehouseManager, ArticleController.create);
 
 router.put('/update', auth.verifyWarehouseManager,ArticleController.update);
 
-router.get('/list', ArticleController.list);
+router.get('/list', auth.verifyBranchChief,ArticleController.list);
+router.get('/makefile', auth.verifyWarehouseManager, ArticleController.makefile);
 
 
 module.exports = router;
