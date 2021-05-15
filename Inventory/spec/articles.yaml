@@ -157,7 +157,7 @@ paths:
                   message: 
                     type: "string"
                     example: "¡Error en el servidor!."
-    /article/update:
+  /article/update:
     put:
       tags:
         - "article"
@@ -211,6 +211,33 @@ paths:
                   message: 
                     type: "string"
                     example: "El artículo fue modificado con éxito."      
+        500: 
+          description: "bad request"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties: 
+                  message: 
+                    type: "string"
+                    example: "¡Error en el servidor!."
+  /article/makefile:
+    get:
+      tags:
+        - "article"
+      summary: "make file xlsx of articles"
+      description: "We can make file of articles in xlsx with this service"
+      operationId: "makefile"
+        404:
+          description: "bad request"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties:
+                  message: 
+                    type: "string"
+                    example: "Error al generar el archivo."
         500: 
           description: "bad request"
           content:
