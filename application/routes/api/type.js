@@ -4,7 +4,7 @@ const auth = require('../../middleware/auth');
 
 router.post('/create', auth.verifyWarehouseManager, TypeController.add);
 
-router.get('/list',TypeController.list);
+router.get('/list',auth.verifyBranchChief,TypeController.list);
 
 
 module.exports = router;

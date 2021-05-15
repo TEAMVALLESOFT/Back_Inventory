@@ -1,4 +1,6 @@
 const db = require('../models');
+const exportArticlesToExcel = require('../services/makefile');
+const fs = require('fs');
 
 exports.create = async (req, res, next) => {
     try {
@@ -308,12 +310,11 @@ exports.update = async (req, res, next) => {
                         label: asociate_label.toUpperCase()
                     },{
                         where: {id: asociate_updated.id}
-                    });
-
-                    res.status(200).send({
-                        message: 'El artículo y sus articulos asociados fueron modificados con éxito.'
-                    });
-                }    
+                    }); 
+                }  
+                res.status(200).send({
+                    message: 'El artículo y sus articulos asociados fueron modificados con éxito.'
+                });  
             }
         }
     } catch (error) {
@@ -323,3 +324,41 @@ exports.update = async (req, res, next) => {
         next(error);
     }
 };
+
+exports.makefile = async (req,res,next) =>{
+    try {
+        const articles = await db.article.findAndCountAll({
+            include: [{
+                model: db.article_type,
+                required: true,
+                as: 'Tipo'
+            },
+            {
+                model: db.warehouse,
+                required: true,
+                as: 'Bodega'
+            },
+            {
+                model: db.article,
+                as: 'Asociado'
+            }],
+        });
+
+        const excel = exportArticlesToExcel(articles);
+        
+        res.download(excel,(err) =>{
+            if(err){
+                fs.unlinkSync(excel);
+                res.status(404).send({
+                    message: "Error al generar el archivo."
+                }); 
+            }
+            fs.unlinkSync(excel);
+        });        
+    } catch (error) {
+        res.status(500).send({
+            error: '¡Error en el servidor!'
+        })
+        next(error); 
+    }
+}
