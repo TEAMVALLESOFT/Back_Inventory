@@ -1,3 +1,7 @@
+## [2.5.1](https://github.com/TEAMVALLESOFT/Back_Inventory/pull/56) (2021-05-15)
+**Modified**
+- fix change password endpoint. 
+
 ## [2.5.0](https://github.com/TEAMVALLESOFT/Back_Inventory/pull/55) (2021-05-14)
 **Added**
 - [VALLESOFT-238] Added service to update articles.
