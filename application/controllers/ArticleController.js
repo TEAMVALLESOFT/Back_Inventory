@@ -356,6 +356,9 @@ exports.makefile = async (req,res,next) =>{
             fs.unlinkSync(excel);
         });        
     } catch (error) {
-        
+        res.status(500).send({
+            error: '¡Error en el servidor!'
+        })
+        next(error); 
     }
 }
