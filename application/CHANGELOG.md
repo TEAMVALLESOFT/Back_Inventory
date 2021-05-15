@@ -1,3 +1,9 @@
+## [2.6.0](https://github.com/TEAMVALLESOFT/Back_Inventory/pull/57) (2021-05-15)
+**Added/Modified**
+- [VALLESOFT-59] Added service to make file report of articles in xlsx.
+- fix error when modified article that have more than 2 articles associated.
+- fix error in middleware in routes when some one of 3 rols access.
+
 ## [2.5.1](https://github.com/TEAMVALLESOFT/Back_Inventory/pull/56) (2021-05-15)
 **Modified**
 - fix change password endpoint. 
