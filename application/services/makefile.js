@@ -54,7 +54,7 @@ const exportsArticlesToExcel = (articles) => {
     });
     const excel_file = exportExcel(data,workSheetColumnNames,excel,workSheetName);
 
-    return excel_file;
+    return excel;
 }
 
 module.exports = exportsArticlesToExcel;
