@@ -4,8 +4,8 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const fs = require('fs');
 const https = require('https');
-const crPath = '/etc/nginx/ssl/scoutscentinelas113cali.crt';
-const pkPath = '/etc/nginx/ssl/scoutscentinelas113cali.key';
+const crPath = '/etc/letsencrypt/live/inventario.scoutscentinelas113cali.org/cert.pem';
+const pkPath = '/etc/letsencrypt/live/inventario.scoutscentinelas113cali.org/privkey.pem';
 
 //instancia de express en app
 const app = express();

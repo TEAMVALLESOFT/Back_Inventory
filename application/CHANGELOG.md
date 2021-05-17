@@ -1,3 +1,8 @@
+## [2.6.1](https://github.com/TEAMVALLESOFT/Back_Inventory/pull/58) (2021-05-17)
+**Modified**
+- Modified makefile service to include worksheet in ExportsArticlesToExcel.
+- Modified cert and key file in server.js.
+
 ## [2.6.0](https://github.com/TEAMVALLESOFT/Back_Inventory/pull/57) (2021-05-15)
 **Added/Modified**
 - [VALLESOFT-59] Added service to make file report of articles in xlsx.
