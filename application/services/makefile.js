@@ -13,9 +13,21 @@ const date = () => {
     return today;
 }
 
-const exportExcel = (data) => {
+const exportExcel = (data, workSheetColumnNames, excel, workSheetName) => {
 
-    var excel = date() +"-"+ "Articulos.xlsx";
+    const workBook = xlsx.utils.book_new();
+    const workSheetData = [
+        workSheetColumnNames,
+        ...data
+    ];
+    const workSheet = xlsx.utils.aoa_to_sheet(workSheetData);
+    xlsx.utils.book_append_sheet(workBook, workSheet, workSheetName);
+    xlsx.writeFile(workBook, excel);
+}
+
+const exportsArticlesToExcel = (articles) => {
+
+    const excel = date() +"-"+ "Articulos.xlsx";
 
     const workSheetColumnNames = [
         "ID",
@@ -30,20 +42,7 @@ const exportExcel = (data) => {
         "FECHA DE INGRESO",
     ];
     const workSheetName = 'Articulos';
-    const workBook = xlsx.utils.book_new();
-    const workSheetData = [
-        workSheetColumnNames,
-        ...data
-    ];
 
-    const workSheet = xlsx.utils.aoa_to_sheet(workSheetData);
-    xlsx.utils.book_append_sheet(workBook, workSheet, workSheetName);
-    xlsx.writeFile(workBook, excel);
-
-    return excel;
-}
-
-const exportsArticlesToExcel = (articles) => {
     const data = articles.rows.map(article => {
         return [
             article.id, article.label, article.Tipo.classif,
@@ -53,9 +52,9 @@ const exportsArticlesToExcel = (articles) => {
             article.createdAt
         ];
     });
-    const excel = exportExcel(data);
+    const excel_file = exportExcel(data,workSheetColumnNames,excel,workSheetName);
 
-    return excel;
+    return excel_file;
 }
 
 module.exports = exportsArticlesToExcel;
