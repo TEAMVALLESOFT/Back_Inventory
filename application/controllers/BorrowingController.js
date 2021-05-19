@@ -287,6 +287,7 @@ exports.update = async (req, res, next) => {
         const updateBorrowing = await db.borrowing.update({
             pick_up_date: req.body.pick_up_date,
             return_date: req.body.return_date,
+            auth_state: req.body.auth_state,
             obs: req.body.obs,
             has_returning: 0
         },
