@@ -6,6 +6,7 @@ router.post('/create',auth.verifyBranchChief,ReturningController.create);
 
 router.get('/list',auth.verifyBranchChief, ReturningController.list);
 router.get('/id', auth.verifyBranchChief,ReturningController.detail);
+router.get('/makefile', auth.verifyBranchChief, ReturningController.makefile);
 
 router.put('/approved', auth.verifyWarehouseManager,ReturningController.approve);
 router.put('/rejected', auth.verifyWarehouseManager, ReturningController.reject);

@@ -201,8 +201,33 @@ paths:
                   message: 
                     type: "string"
                     example: "¡Error en el servidor!."
-  
-  
+  /returning/makefile:
+    get:
+      tags:
+        - "returning"
+      summary: "make file xlsx of returnings"
+      description: "We can make file of returnings request in xlsx with this service"
+      operationId: "makefile"
+        404:
+          description: "bad request"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties:
+                  message: 
+                    type: "string"
+                    example: "Error al generar el archivo."
+        500: 
+          description: "bad request"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties: 
+                  message: 
+                    type: "string"
+                    example: "¡Error en el servidor!."
 components:
   schemas:
     returning:

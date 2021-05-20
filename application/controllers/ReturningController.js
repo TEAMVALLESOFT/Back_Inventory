@@ -1,5 +1,7 @@
 const db = require('../models');
 const mailService = require('../services/mail');
+const { exportsReturningToExcel } = require('../services/makefile');
+const fs = require('fs');
 
 exports.create = async (req, res, next) => {
     try {
@@ -269,3 +271,63 @@ exports.update = async (req, res, next) => {
         next(error);
     }
 };
+
+exports.makefile = async (req,res,next) =>{
+    try {
+        const returnings = await db.returning.findAndCountAll({
+            include: [{
+                model: db.borrowing,
+                attributes: ['auth_state', 'pick_up_date', 'return_date', 'user_fk'],
+                required: true,
+                as: 'solicitud',
+                include: {
+                    model: db.user,
+                    attributes: ['user_name','email'],
+                    as: 'Asociado',
+                }
+            }, {
+                model: db.user,
+                attributes: ['user_name', 'email', 'phone'],
+                required: true,
+                as: 'evaluador',
+            }]
+        });
+        const array = [];
+        var datareal = [];
+        for (var i = 0; i < returnings.count; i++) {
+            var element = await db.reservation.findAndCountAll({
+                attributes: ['id', 'borrowing_fk', 'article_fk'],
+                where: { borrowing_fk: returnings.rows[i].borrowing_fk },
+                include: {
+                    model: db.article,
+                    attributes: ['label', 'id', 'article_type_fk'],
+                    as: 'Articulo',
+                    include: {
+                        model: db.article_type,
+                        attributes: ['classif', 'article_type_name'],
+                        as: 'Tipo',
+                    }
+                }
+            });
+            array.push(element);
+            datareal.push(Object.assign(returnings.rows[i].dataValues, { article_list: array[i].rows }));
+        }
+
+        const excel = exportsReturningToExcel(datareal);
+        
+        res.download(excel,(err) =>{
+            if(err){
+                fs.unlinkSync(excel);
+                res.status(404).send({
+                    message: "Error al generar el archivo."
+                }); 
+            }
+            fs.unlinkSync(excel);
+        });         
+    } catch (error) {
+        res.status(500).send({
+            error: '¡Error en el servidor!'
+        })
+        next(error); 
+    }
+}
