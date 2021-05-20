@@ -1,5 +1,5 @@
 const db = require('../models');
-const exportArticlesToExcel = require('../services/makefile');
+const { exportsArticlesToExcel } = require('../services/makefile');
 const fs = require('fs');
 
 exports.create = async (req, res, next) => {
@@ -344,7 +344,7 @@ exports.makefile = async (req,res,next) =>{
             }],
         });
 
-        const excel = exportArticlesToExcel(articles);
+        const excel = exportsArticlesToExcel(articles);
         
         res.download(excel,(err) =>{
             if(err){

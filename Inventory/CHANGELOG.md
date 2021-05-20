@@ -1,3 +1,7 @@
+## [1.7.0](https://github.com/TEAMVALLESOFT/Back_Inventory/pull/60) (2021-05-19)
+**Added**
+- [VALLESOFT-286] Added documentation about returning makefile.
+
 ## [1.6.0](https://github.com/TEAMVALLESOFT/Back_Inventory/pull/57) (2021-05-15)
 **Added**
 - [VALLESOFT-59] Added documentation about article makefile.

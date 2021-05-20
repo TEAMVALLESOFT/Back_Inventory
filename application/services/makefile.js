@@ -8,13 +8,12 @@ const date = () => {
     const day = date.getDate();
     const month = date.getMonth() + 1;
     const year = date.getFullYear();
-    const today = year + "-"+ month+ "-"+ day;
+    const today = year + "-" + month + "-" + day;
 
     return today;
 }
 
 const exportExcel = (data, workSheetColumnNames, excel, workSheetName) => {
-
     const workBook = xlsx.utils.book_new();
     const workSheetData = [
         workSheetColumnNames,
@@ -27,7 +26,7 @@ const exportExcel = (data, workSheetColumnNames, excel, workSheetName) => {
 
 const exportsArticlesToExcel = (articles) => {
 
-    const excel = date() +"-"+ "Articulos.xlsx";
+    const excel = date() + "-" + "Articulos.xlsx";
 
     const workSheetColumnNames = [
         "ID",
@@ -52,9 +51,51 @@ const exportsArticlesToExcel = (articles) => {
             article.createdAt
         ];
     });
-    const excel_file = exportExcel(data,workSheetColumnNames,excel,workSheetName);
+    const excel_file = exportExcel(data, workSheetColumnNames, excel, workSheetName);
 
     return excel;
 }
 
-module.exports = exportsArticlesToExcel;
+const exportsReturningToExcel = (returnings) => {
+
+    const excel = date() + "-" + "Devoluciones.xlsx";
+
+    const workSheetColumnNames = [
+        "ID",
+        "ESTADO",
+        "SOLICITANTE",
+        "EMAIL",
+        "ESTADO DE LOS ARTICULOS",
+        "ARTICULOS SOLICITADOS",
+        "OBSERVACIONES",
+    ];
+
+    const workSheetName = 'Devoluciones';
+
+    const data = returnings.map(returning => {
+        var article = "";
+        for (var j = 0; j < returning.article_list.length; j++) {
+            const id = returning.article_list[j].Articulo.id;
+            article += id +",";
+        }
+
+        if(article.charAt(article.length-1) == ","){
+            article = article.substring(0, article.length-1);
+        }
+
+        return [
+            returning.id, returning.auth_state,returning.solicitud.Asociado.user_name,
+            returning.solicitud.Asociado.email, returning.state,
+            article, returning.obs
+        ];
+    });
+
+    const excel_file = exportExcel(data, workSheetColumnNames, excel, workSheetName);
+
+    return excel;
+}
+
+module.exports = {
+    exportsArticlesToExcel,
+    exportsReturningToExcel
+}
