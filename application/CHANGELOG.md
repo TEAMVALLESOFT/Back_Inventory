@@ -1,3 +1,9 @@
+## [2.7.0](https://github.com/TEAMVALLESOFT/Back_Inventory/pull/60) (2021-05-19)
+**Added/Modified**
+- [VALLESOFT-286] Modified makefile service to add exportsReturningToExcel.
+- Modified makefile method in ArticleController to include exportsArticlesToExcel.
+- fix error updated available_state when borrowing was approve.
+
 ## [2.6.1](https://github.com/TEAMVALLESOFT/Back_Inventory/pull/58) (2021-05-17)
 **Modified**
 - Modified makefile service to include worksheet in ExportsArticlesToExcel.
