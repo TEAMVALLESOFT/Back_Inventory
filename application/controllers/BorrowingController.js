@@ -204,7 +204,7 @@ exports.approve = async (req, res, next) => {
 
             //update available_state articles.
             if (register == 1) {
-                const borrowing = await db.returning.findOne({
+                const borrowing = await db.borrowing.findOne({
                     where: { id: req.body.borrowing_id }
                 });
                 const element = await db.reservation.findAndCountAll({
