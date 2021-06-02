@@ -1,3 +1,8 @@
+## [2.7.1](https://github.com/TEAMVALLESOFT/Back_Inventory/pull/62) (2021-06-01)
+**Modified**
+- fix makefile permissions
+- fix logs in console
+
 ## [2.7.0](https://github.com/TEAMVALLESOFT/Back_Inventory/pull/60) (2021-05-19)
 **Added/Modified**
 - [VALLESOFT-286] Modified makefile service to add exportsReturningToExcel.
