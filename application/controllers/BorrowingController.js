@@ -227,7 +227,7 @@ exports.approve = async (req, res, next) => {
         })
         for (var i = 0; i < element.count; i++) {
           const data = await db.article.update(
-            { available_state: 'prestado' },
+            { available_state: 'Prestado' },
             {
               where: { id: element.rows[i].article_fk },
             }
