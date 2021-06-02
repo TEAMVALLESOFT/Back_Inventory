@@ -4,7 +4,8 @@
         "password": "password",
         "database": "database_name",
         "host": "host_name",
-        "dialect": "mysql"
+        "dialect": "mysql",
+        "logging": false
     },
     "test": {
         "dialect": "mysql",

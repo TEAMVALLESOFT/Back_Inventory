@@ -6,7 +6,7 @@ router.post('/create', auth.verifyBranchChief, BorrowingController.create)
 
 router.get('/list', auth.verifyBranchChief, BorrowingController.list)
 router.get('/id', auth.verifyBranchChief, BorrowingController.detail)
-router.get('/makefile', auth.verifyBranchChief, BorrowingController.makefile)
+router.get('/makefile', auth.verifyWarehouseManager, BorrowingController.makefile)
 
 router.put(
   '/approved',
