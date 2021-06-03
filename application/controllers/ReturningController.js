@@ -171,7 +171,7 @@ exports.approve = async (req, res, next) => {
                 where: { borrowing_fk: prestamo.id }
             });
             for (var i = 0; i < element.count; i++) {
-                const data = await db.article.update({ available_state: 'disponible' },
+                const data = await db.article.update({ available_state: 'Disponible' },
                     {
                         where: { id: element.rows[i].article_fk }
                     });
