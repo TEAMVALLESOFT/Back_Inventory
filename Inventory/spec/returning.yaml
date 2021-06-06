@@ -103,6 +103,71 @@ paths:
                   message: 
                     type: "string"
                     example: "¡Error en el servidor!."
+                    
+  /returning/detail:
+    get:
+      tags:
+        - "returning"
+      summary: "List One returning"
+      description: "We can list One returning with this service"
+      operationId: "List One"
+      responses:
+        200:
+          description: "successful operation"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties:
+                $ref: "#/components/schemas/returning"  
+        404:
+          description: "bad request"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties: 
+                  message: 
+                    type: "string"
+                    example: "No Existe ese Returning en el sistema."
+        500: 
+          description: "bad request"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties: 
+                  message: 
+                    type: "string"
+                    example: "¡Error en el servidor!."
+  /returning/update:
+    get:
+      tags:
+        - "returning"
+      summary: "Update one returning"
+      description: "We can update One returning with this service"
+      operationId: "Update"
+      responses:
+        200:
+          description: "successful operation"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties: 
+                  message: 
+                    type: "string"
+                    example: "Actualizado con exito."    
+        500: 
+          description: "bad request"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties: 
+                  message: 
+                    type: "string"
+                    example: "¡Error en el servidor!."
   /returning/approved:
     put:
       tags:
@@ -208,7 +273,7 @@ paths:
       summary: "make file xlsx of returnings"
       description: "We can make file of returnings request in xlsx with this service"
       operationId: "makefile"
-        404:
+      404:
           description: "bad request"
           content:
             application/json:
@@ -218,7 +283,7 @@ paths:
                   message: 
                     type: "string"
                     example: "Error al generar el archivo."
-        500: 
+      500: 
           description: "bad request"
           content:
             application/json:
@@ -326,16 +391,3 @@ components:
                               article_type:
                                 type: "string"
                                 example: "carpa pequeña"
-
-
-
- 
-        
-  
-
-  
-    
-   
-        
-       
- 

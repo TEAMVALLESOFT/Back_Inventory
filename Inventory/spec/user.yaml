@@ -73,7 +73,177 @@ paths:
                   message: 
                     type: "string"
                     example: "¡Error en el servidor!."
-  user/login:
+                    
+  /user/detail:
+    get:
+      tags:
+        - "user"
+      summary: "List of one user"
+      description: "We can list one user with this service"
+      operationId: "List one user"
+      responses:
+        200:
+          description: "successful operation"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties:
+                $ref: "#/components/schemas/detail" 
+        404:
+          description: "bad request"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties: 
+                  message: 
+                    type: "string"
+                    example: "No hay registro en el sistema."
+        500: 
+          description: "bad request"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties: 
+                  message: 
+                    type: "string"
+                    example: "¡Error en el servidor!."
+  /user/recoverp:
+    put:
+      tags:
+        - "user"
+      summary: "Recover the password of one user part1"
+      description: "We can recover the password of one user,this is the first part"
+      operationId: "Recover pass Pt 1"
+      responses:
+        200:
+          description: "successful operation"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties:
+                 message: 
+                    type: "string"
+                    example: "Envio exitoso."
+        404:
+          description: "bad request"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties: 
+                  message: 
+                    type: "string"
+                    example: "No hay Usuario en el sistema."
+        500: 
+          description: "bad request"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties: 
+                  message: 
+                    type: "string"
+                    example: "¡Error en el servidor!."
+                    
+  /user/tokenv:
+    get:
+      tags:
+        - "user"
+      summary: "Token Verification"
+      description: "We can verify the token with this service"
+      operationId: "change password parte 2"
+      responses:
+        200:
+          description: "successful operation"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties:
+                  id:
+                    type: "integer"
+                    example: 1
+                  user_name:
+                    type: "string"
+                    example: "mariano"
+        404:
+          description: "bad request"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties: 
+                  message: 
+                    type: "string"
+                    example: "Ingrese un token valido"
+        500: 
+          description: "bad request"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties: 
+                  message: 
+                    type: "string"
+                    example: "¡Error en el servidor!."
+    /user/passwd:
+    post:
+      tags:
+        - "User"
+      summary: "Update User"
+      description: "We can update the password of one user"
+      operationId: "update"
+      requestBody:
+        description: "change password final part"
+        required: true
+        content: 
+          application/json: 
+            schema: 
+              type: object
+              properties:
+                passwd_new:
+                  type: "string"
+                  example: "YanoSoydeGoogle" 
+                passwd_compare:
+                  type: "string"
+                  example: "YanoSoydeGoogle"
+      responses:
+        200:
+          description: "successful operation"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties: 
+                  message: 
+                    type: "string"
+                    example: "Usuario modificado con éxito."
+                    
+        404:
+          description: "bad request"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties: 
+                  message: 
+                    type: "string"
+                    example: "Ingrese un id valido"
+        500: 
+          description: "bad request"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties: 
+                  message: 
+                    type: "string"
+                    example: "¡Error en el servidor!."
+  /user/login:
     post:
       tags:
         - "User"
@@ -129,7 +299,7 @@ paths:
                   message: 
                     type: "string"
                     example: "Error en el ususario o contraseña."
-  user/update:
+  /user/update:
     post:
       tags:
         - "User"
@@ -203,6 +373,36 @@ components:
               email:
                 type: "string"
                 example: "test@example.com"
+    detail:
+      type: "object"
+      required:
+       - "id"
+      properties:
+        data:
+          type: "object"
+          items:
+            type: "object"
+            properties:
+              user_name:
+                type: "string"
+                example: "Juan David"
+              email:
+                type: "string"
+                example: "juanda@google.com"
+              branch:
+                type: "string"
+                example: "lobatos"
+              phone:
+                type: "string"
+                example: "315561111"
+              password:
+                type: "string"
+                example: "123abcSoydeGoogle"
+              rol:
+                type: "string"
+                example: "administrador"
+                
+      
 
   
           

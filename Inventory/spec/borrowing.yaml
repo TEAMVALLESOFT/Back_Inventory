@@ -113,6 +113,7 @@ paths:
                   message: 
                     type: "string"
                     example: "¡Error en el servidor!."
+  
 
   /borrowing/detail:
     get:
@@ -150,6 +151,8 @@ paths:
                   message: 
                     type: "string"
                     example: "¡Error en el servidor!."
+                    
+  
 
   /borrowing/approved:
     put:
@@ -200,6 +203,64 @@ paths:
                   message: 
                     type: "string"
                     example: "¡Error en el servidor!."
+  /borrowing/update:
+    get:
+      tags:
+        - "borrowing"
+      summary: "Update one borrowing"
+      description: "We can update One borrowing with this service"
+      operationId: "Update"
+      responses:
+        200:
+          description: "successful operation"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties: 
+                  message: 
+                    type: "string"
+                    example: "Actualizado con exito."    
+        500: 
+          description: "bad request"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties: 
+                  message: 
+                    type: "string"
+                    example: "¡Error en el servidor!."  
+                    
+  /borrowing/makefile:
+    get:
+      tags:
+        - "borrowing"
+      summary: "make file xlsx of borrowings"
+      description: "We can make file of returningborrowings request in xlsx with this service"
+      operationId: "makefile"
+      404:
+          description: "bad request"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties:
+                  message: 
+                    type: "string"
+                    example: "Error al generar el archivo."
+      500: 
+          description: "bad request"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                properties: 
+                  message: 
+                    type: "string"
+                    example: "¡Error en el servidor!."
+                    
+  
 
   /borrowing/rejected:
     put:
